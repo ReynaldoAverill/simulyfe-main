@@ -1,6 +1,7 @@
 import logging
 import os
 from tkinter import Tk
+from .page_main import Page_main
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +20,7 @@ class Window(Tk):
         logger.debug('Initiate window for user interface')
         self.title(title)
         self.geometry(f'{size[0]}x{size[1]}')
-        self.configure(bg = "#F2F2F2")
+        self.configure(bg = "#000000")
         # Set window into full screen
         # self.wm_overrideredirect(True)
-
 
