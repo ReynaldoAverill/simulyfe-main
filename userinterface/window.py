@@ -23,4 +23,6 @@ class Window(Tk):
         self.configure(bg = "#000000")
         # Set window into full screen
         # self.wm_overrideredirect(True)
+        self.resizable(False, False)
+
 

@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.DEBUG)
 def main():
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
     userinterface.switch_to("page_main")
+    userinterface.switch_to("page_anastomosis")
     userinterface.start_mainloop()
 
 if __name__ == "__main__":

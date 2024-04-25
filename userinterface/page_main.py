@@ -1,5 +1,3 @@
-
-from pathlib import Path
 import logging
 from tkinter import Canvas, Entry, Text, Button, PhotoImage
 from .userinterface_tools import relative_to_assets
