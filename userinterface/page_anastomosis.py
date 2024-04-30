@@ -1,13 +1,12 @@
 import logging
 from tkinter import Canvas, Entry, Text, Button, PhotoImage
 from .userinterface_tools import relative_to_assets
-from model.model import Model
 
 page_name = "page_anastomosis"
 logger = logging.getLogger(__name__)
 
 class Page_anastomosis(Canvas):
-    def __init__(self,parent,model: Model):
+    def __init__(self,parent):
         super().__init__(parent)
         logger.debug("Create "+str(page_name)+" canvas")
         self.config(
@@ -123,7 +122,7 @@ class Page_anastomosis(Canvas):
             image=self.button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_1 clicked"),
+            command=lambda: print("button_confirmation_to_main clicked"),
             relief="flat"
         )
         self.button_confirmation_to_main.place(

@@ -7,19 +7,18 @@ from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis
 logger = logging.getLogger(__name__)
 
 class Userinterface:
-    def __init__(self,title,dimension,model):
-        self.model = model
+    def __init__(self,title,dimension):
         self.window = Window(title,dimension)
         self.page_classes = {
             "page_main" : Page_main,
             "page_anastomosis" : Page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main
         }
-        self.current_page = Page_main(self.window,self.model)
+        self.current_page = None
     
     def switch_to(self, name):
         logger.debug("Switch to "+str(name))
-        new_frame = self.page_classes[name](self.window,self.model)
+        new_frame = self.page_classes[name](self.window)
         if self.current_page is not None:
             self.current_page.place_forget()
         self.current_page = new_frame

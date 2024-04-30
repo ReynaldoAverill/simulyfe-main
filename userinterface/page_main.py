@@ -7,8 +7,7 @@ page_name = "page_main"
 logger = logging.getLogger(__name__)
 
 class Page_main(Canvas):
-    def __init__(self,parent,model: Model):
-        self.model = model
+    def __init__(self,parent):
         super().__init__(parent)
         logger.debug("Create "+str(page_name)+" canvas")
         self.config(

@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def main():
     model = Model()
-    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),model)
+    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
     controller = Controller_userinterface(model,userinterface)
     controller.start_app()
 
