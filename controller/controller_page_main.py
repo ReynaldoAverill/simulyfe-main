@@ -1,21 +1,22 @@
 from userinterface.userinterface import Userinterface
+from model.model import Model
 import logging
 
 logger = logging.getLogger(__name__)
 
 class Controller_page_main: 
-    def __init__(self,userinterface:Userinterface):
-        userinterface.switch_to("page_main")
+    def __init__(self,model: Model, userinterface:Userinterface):
+        self.model = model
+        self.userinterface = userinterface
         self.page = userinterface.page_classes["page_main"]
         # self.page = self.userinterface.page_classes["page_main"](self.userinterface)
-        self.bind_with_userinterface(userinterface)
-    def _bind_with_userinterface(self,userinterface):
-        self.page.button_start.config(command = lambda: self.moveto_page_anastomosis(userinterface))
-        self.page.button_exit.config(command = lambda: self.exit_app(userinterface))
-    def _moveto_page_anastomosis(self, userinterface:Userinterface):
+        self._bind_with_userinterface()
+    def _bind_with_userinterface(self):
+        self.page.button_start.config(command = lambda: self._moveto_page_anastomosis())
+        self.page.button_exit.config(command = lambda: self._exit_app())
+    def _moveto_page_anastomosis(self):
         logger.debug("button start_pressed")
-        userinterface.switch_to("page_anastomosis")
-        userinterface.start_mainloop()
-    def _exit_app(self,userinterface:Userinterface):
+        self.model.user_state.page_anastomosis()
+    def _exit_app(self):
         logger.debug("button exit pressed")
-        userinterface.exit_app()
+        self.model.user_state.exit()

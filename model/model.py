@@ -1,4 +1,4 @@
-from user_state import User_state
+from .user_state import User_state
 
 class Model():
     def __init__(self):
