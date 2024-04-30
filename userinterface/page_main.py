@@ -61,7 +61,7 @@ class Page_main(Canvas):
             height=100.0
         )
 
-        self.button_othermenu.config(command=lambda: print("button_2 clicked"))
+        # self.button_start.config(command=lambda: print("button_start clicked"))
 
         self.button_image_3 = PhotoImage(
             file=relative_to_assets(page_name,"button_3.png"))
@@ -79,7 +79,10 @@ class Page_main(Canvas):
             height=100.0
         )
         logger.debug(str(page_name)+" canvas created")
-        self.place(x = 0, y = 0)
+        # self.place(x = 0, y = 0)
         # parent.mainloop()
+        self.x =5
 
+    def get_start_button(self):
+        return self.x
 

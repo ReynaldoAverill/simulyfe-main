@@ -32,5 +32,7 @@ class Controller_userinterface:
         self.userinterface.exit_app()
 
     def start_app(self):
+        if self.model.user_state.state == "page_main":
+            self.userinterface.switch_to("page_main")
         self.userinterface.start_mainloop()
         pass

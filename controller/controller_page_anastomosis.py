@@ -12,7 +12,8 @@ class Controller_page_anastomosis:
         # self.page = self.userinterface.page_classes["page_main"](self.userinterface)
         self._bind_with_userinterface()
     def _bind_with_userinterface(self):
-        self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_confirmation())
+        pass
+        # self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_confirmation())
     def _moveto_page_confirmation(self):
         logger.debug("button main menu pressed")
         self.model.user_state.page_main()
