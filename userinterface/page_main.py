@@ -17,7 +17,7 @@ class Page_main(Canvas):
             highlightthickness = 0,
             relief = "ridge"
         )
-
+        
         # image_1
         self.image_image_1 = PhotoImage(
             file=relative_to_assets(page_name,"image_1.png"))
@@ -69,7 +69,7 @@ class Page_main(Canvas):
             image=self.button_image_3,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: parent.destroy(),
+            # command=lambda: parent.destroy(),
             relief="flat"
         )
         self.button_exit.place(
@@ -81,7 +81,5 @@ class Page_main(Canvas):
         logger.debug(str(page_name)+" canvas created")
         self.place(x = 0, y = 0)
         # parent.mainloop()
-
-
 
 

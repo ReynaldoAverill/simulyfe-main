@@ -82,7 +82,7 @@ class Page_anastomosis(Canvas):
         self.create_text(
             410,205,
             anchor="c",
-            text=self.text_stopwatchtime,
+            text=self.text_stopwatch_time,
             fill="#FFFFFF",
             font=('Inter', 60 * -1,'bold'),
             width=380,
@@ -118,14 +118,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_1 = PhotoImage(
             file=relative_to_assets(page_name,"button_1.png"))
-        self.button_1 = Button(
+        self.button_confirmation_to_main = Button(
             image=self.button_image_1,
             borderwidth=0,
             highlightthickness=0,
             command=lambda: print("button_1 clicked"),
             relief="flat"
         )
-        self.button_1.place(
+        self.button_confirmation_to_main.place(
             x=20.0,
             y=315.0,
             width=100.0,

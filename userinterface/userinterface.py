@@ -2,6 +2,7 @@ import logging
 from .window import Window
 from .page_main import Page_main
 from .page_anastomosis import Page_anastomosis
+from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis_to_main
 
 logger = logging.getLogger(__name__)
 
@@ -10,7 +11,8 @@ class Userinterface:
         self.window = Window(title,dimension)
         self.page_classes = {
             "page_main" : Page_main,
-            "page_anastomosis" : Page_anastomosis
+            "page_anastomosis" : Page_anastomosis,
+            "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main
         }
         self.current_page = None
     
@@ -24,3 +26,6 @@ class Userinterface:
 
     def start_mainloop(self):
         self.window.mainloop()
+
+    def exit_app(self):
+        self.window.destroy()
