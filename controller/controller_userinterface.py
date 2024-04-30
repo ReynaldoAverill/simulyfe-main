@@ -20,19 +20,21 @@ class Controller_userinterface:
     def move_to_page_anastomosis(self,user_state: User_state):
         if user_state.state == "page_anastomosis":
             logger.debug("Move to Page Anastomosis")
-            self.userinterface.switch_to(user_state)
+            self.userinterface.switch_to(str(user_state.state))
+            self.controller_page_main = Controller_page_anastomosis(self.model,self.userinterface)
     
     def move_to_page_main(self,user_state: User_state):
         if user_state.state == "page_main":
-            logger.debug("Move to Page Main")
+            logger.debug("Processing to Move to Page Main")
             self.userinterface.switch_to(user_state)
     
-    def exit_app(self, user_state: User_state):
-        logger.debug("Exit button pressed")
+    def exit_app(self):
+        logger.debug("Processing to close the app")
         self.userinterface.exit_app()
 
     def start_app(self):
         if self.model.user_state.state == "page_main":
             self.userinterface.switch_to("page_main")
+            self.controller_page_main = Controller_page_main(self.model,self.userinterface)
         self.userinterface.start_mainloop()
         pass

@@ -1,12 +1,13 @@
 import logging
 from tkinter import Canvas, Entry, Text, Button, PhotoImage
 from .userinterface_tools import relative_to_assets
+from model.model import Model
 
 page_name = "page_anastomosis"
 logger = logging.getLogger(__name__)
 
 class Page_anastomosis(Canvas):
-    def __init__(self,parent):
+    def __init__(self,parent,model: Model):
         super().__init__(parent)
         logger.debug("Create "+str(page_name)+" canvas")
         self.config(

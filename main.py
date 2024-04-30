@@ -8,13 +8,13 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 def main():
-    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
     model = Model()
+    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),model)
     controller = Controller_userinterface(model,userinterface)
     controller.start_app()
 
     # userinterface.switch_to("page_confirmation_anastomosis_to_main")
-    # userinterface.switch_to("page_anastomosis")
+    # userinterface.switch_to("page_main")
     # userinterface.start_mainloop()
 
 if __name__ == "__main__":
