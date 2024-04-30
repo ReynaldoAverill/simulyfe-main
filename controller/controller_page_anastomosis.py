@@ -8,7 +8,7 @@ class Controller_page_anastomosis:
     def __init__(self,model: Model,userinterface:Userinterface):
         self.model = model
         self.userinterface = userinterface
-        self.page = userinterface.page_classes["page_anastomosis"]
+        self.page = self.userinterface.page_classes["page_anastomosis"]
         # self.page = self.userinterface.page_classes["page_main"](self.userinterface)
         self._bind_with_userinterface()
     def _bind_with_userinterface(self):

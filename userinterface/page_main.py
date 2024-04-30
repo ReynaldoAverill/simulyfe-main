@@ -30,6 +30,7 @@ class Page_main(Canvas):
         # button_start
         self.button_image_1 = PhotoImage(
             file=relative_to_assets(page_name,"button_1.png"))
+        self.x = 7
         self.button_start = Button(self,
             image=self.button_image_1,
             borderwidth=0,

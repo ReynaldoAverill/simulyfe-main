@@ -14,7 +14,7 @@ class Userinterface:
             "page_anastomosis" : Page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main
         }
-        self.current_page = None
+        self.current_page = Page_main(self.window)
     
     def switch_to(self, name):
         logger.debug("Switch to "+str(name))
