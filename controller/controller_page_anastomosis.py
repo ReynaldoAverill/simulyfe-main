@@ -22,4 +22,4 @@ class Controller_page_anastomosis:
         # self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_confirmation())
     def _moveto_page_confirmation(self):
         logger.debug("button main menu pressed")
-        self.model.user_state.move_to_new_page("page_main")
+        self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_main")
