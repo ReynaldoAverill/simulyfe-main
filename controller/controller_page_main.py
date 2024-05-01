@@ -21,7 +21,7 @@ class Controller_page_main:
         # self.page.button_exit.config(command = lambda: self._exit_app())
     def _moveto_page_anastomosis(self):
         logger.debug("button start_pressed, change app state")
-        self.model.user_state.page_anastomosis()
+        self.model.user_state.move_to_new_page("page_anastomosis")
     def _exit_app(self):
         logger.debug("button exit pressed, change app state")
         self.model.user_state.exit()
