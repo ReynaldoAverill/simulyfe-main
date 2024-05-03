@@ -1,18 +1,16 @@
 from .controller_page_main import Controller_page_main
 from .controller_page_anastomosis import Controller_page_anastomosis
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
-from userinterface.userinterface import Userinterface
-from model.model import Model
+from .controller_base import Controller_base
 from model.user_state import User_state
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-class Controller_userinterface:
-    def __init__(self, model:Model, userinterface: Userinterface):
-        self.model = model
-        self.userinterface = userinterface
+class Controller_userinterface(Controller_base):
+    def __init__(self, model, userinterface):
+        super().__init__(model,userinterface)
         self.pagecontroller_classes = {
             "page_main" : Controller_page_main,
             "page_anastomosis" : Controller_page_anastomosis,

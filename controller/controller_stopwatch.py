@@ -1,6 +1,5 @@
-from model.model import Model
+from .controller_base import Controller_base
 from model.stopwatch import Stopwatch
-from userinterface.userinterface import Userinterface
 import time
 
 import logging
@@ -13,14 +12,13 @@ def format_time_string(time_passed):
     hours   = minutes // 60
     return f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}:{int(time_passed%1*100):02d}"
 
-class Controller_stopwatch:
-    def __init__(self, model: Model, userinterface: Userinterface) -> None:
-        self.model = model
-        self.userinterface = userinterface
+class Controller_stopwatch(Controller_base):
+    def __init__(self, model, userinterface) -> None:
+        super().__init__(model,userinterface)
         self.model.stopwatch.add_event_listener("count_stopwatch",self.count_stopwatch)
     
     def count_stopwatch(self,stopwatch: Stopwatch):
-        logger.debug("Start Stopwatch Count")
+        logger.info("Start Stopwatch Count")
         # self.trigger_event("count_stopwatch")
         start = time.time()
         if stopwatch.started: # Case stopwatch already started
