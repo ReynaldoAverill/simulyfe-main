@@ -19,16 +19,10 @@ class Stopwatch(ObservableModel):
         else:
             self.running = True
             threading.Thread(target= lambda: self.trigger_event("count_stopwatch")).start()
-            # self.trigger_event("count_stopwatch")
-        
-    # def count_stopwatch(self):
-        # logger.debug("Start Stopwatch Count")
-        # self.trigger_event("count_stopwatch")
-        # start = time.time()
-        # if self.started: # Case stopwatch already started
-            # until_now = self.passed
-        # else: # Case stopwatch not started yet
-            # until_now = 0
-            # self.started = True
-        # while self.running:
-            # self.passed = time.time() - start + until_now
+            
+    def reset_stopwatch(self):
+        if self.running:
+            # self.stopwatch_label.after_cancel(self.update_time)
+            self.running = False
+        self.passed = 0
+        # self.stopwatch_label.config(text=self.format_time_string(self.passed))
