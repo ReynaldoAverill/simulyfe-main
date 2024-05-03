@@ -1,5 +1,5 @@
 from userinterface.userinterface import Userinterface
-from controller.controller_userinterface import Controller_userinterface
+from controller.controller import Controller
 from model.model import Model
 from test_module.stopwatch_test import start_stopwatch_test
 
@@ -17,7 +17,7 @@ def main():
         os.environ.__setitem__('DISPLAY', ':0.0')
     model = Model()
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
-    controller = Controller_userinterface(model,userinterface)
+    controller = Controller(model,userinterface)
     controller.start_app()
     # start_stopwatch_test()
 
