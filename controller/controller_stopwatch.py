@@ -1,21 +1,18 @@
 from .controller_base import Controller_base
 from model.stopwatch import Stopwatch
+from userinterface.page_anastomosis import Page_anastomosis
 import time
 
 import logging
 
 logger = logging.getLogger(__name__)
-
-def format_time_string(time_passed):
-    seconds = time_passed % 60
-    minutes = time_passed // 60
-    hours   = minutes // 60
-    return f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}:{int(time_passed%1*100):02d}"
-
+    
 class Controller_stopwatch(Controller_base):
     def __init__(self, model, userinterface) -> None:
         super().__init__(model,userinterface)
+        self.stopwatch_page: Page_anastomosis = self.userinterface.current_page
         self.model.stopwatch.add_event_listener("count_stopwatch",self.count_stopwatch)
+        self.model.stopwatch.add_event_listener("update_stopwatch_view",self.update_stopwatch_view)
     
     def count_stopwatch(self,stopwatch: Stopwatch):
         logger.info("Start Stopwatch Count")
@@ -27,6 +24,13 @@ class Controller_stopwatch(Controller_base):
             until_now = 0
             stopwatch.started = True
         while stopwatch.running:
-            stopwatch_text = self.userinterface.current_page.text_stopwatch
             stopwatch.passed = time.time() - start + until_now
-            self.userinterface.current_page.itemconfigure(stopwatch_text,text=format_time_string(stopwatch.passed))
+            self.update_stopwatch_view(stopwatch)
+    
+    def update_stopwatch_view(self, stopwatch: Stopwatch):
+        time_passed = stopwatch.passed
+        seconds = time_passed % 60
+        minutes = time_passed // 60
+        hours   = minutes // 60
+        stopwatch_string = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}:{int(time_passed%1*100):02d}"
+        self.userinterface.current_page.itemconfigure(self.stopwatch_page.text_stopwatch,text=stopwatch_string)
