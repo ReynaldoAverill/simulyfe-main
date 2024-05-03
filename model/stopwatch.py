@@ -2,6 +2,9 @@ import time
 import threading
 from .base import ObservableModel
 
+import logging
+logger = logging.getLogger(__name__)
+
 class Stopwatch(ObservableModel):
     def __init__(self):
         self.started = False
@@ -14,9 +17,12 @@ class Stopwatch(ObservableModel):
             self.running = False
         else:
             self.running = True
+            # self.add_event_listener("")
             threading.Thread(target=self.count_stopwatch).start()
         
     def count_stopwatch(self):
+        logger.debug("Start Stopwatch Count")
+        # self.trigger_event("start_count_stopwatch")
         start = time.time()
         if self.started: # Case stopwatch already started
             until_now = self.passed

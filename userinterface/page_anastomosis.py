@@ -78,7 +78,7 @@ class Page_anastomosis(Canvas):
             justify="center"
         )
 
-        self.create_text(
+        self.text_stopwatch = self.create_text(
             410,205,
             anchor="c",
             text=self.text_stopwatch_time,
@@ -87,6 +87,11 @@ class Page_anastomosis(Canvas):
             width=380,
             justify="center"
         )
+
+        # self.itemconfigure(self.text_stopwatch,text="11:22:33:44")
+        # self.text_stopwatch_time = "11:22:33:44"
+
+        # self.config(self.text_stopwatch,text="11:22:33:44")
 
         self.create_text(
             620.0,
@@ -130,7 +135,7 @@ class Page_anastomosis(Canvas):
             width=100.0,
             height=100.0
         )
-
+        self.itemconfig=()
         self.button_image_2 = PhotoImage(
             file=relative_to_assets(page_name,"button_2.png"))
         self.button_2 = Button(

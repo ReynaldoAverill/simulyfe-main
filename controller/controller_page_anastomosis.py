@@ -16,7 +16,8 @@ class Controller_page_anastomosis:
         self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_confirmation())
         self.page.button_start_stopwatch.config(command = lambda: self.model.stopwatch.count_stopwatch())
         self.page.button_stop_stopwatch.config(command = lambda: self.model.stopwatch.change_running_state())
-        self.page.text_stopwatch_time = self.model.stopwatch.format_time_string(self.model.stopwatch.passed)
+        self.page.itemconfigure(self.page.text_stopwatch,text=self.model.stopwatch.format_time_string(self.model.stopwatch.passed))
+        # self.page.text_stopwatch_time = self.model.stopwatch.format_time_string(self.model.stopwatch.passed)
         # self.page.button_exit.config(command = lambda: self._exit_app())
         # self.page.button_exit.config(command = lambda: self._exit_app())
     # def _moveto_page_anastomosis(self):
