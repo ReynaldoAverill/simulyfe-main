@@ -28,9 +28,12 @@ class Controller_stopwatch(Controller_base):
             self.update_stopwatch_view(stopwatch)
     
     def update_stopwatch_view(self, stopwatch: Stopwatch):
+        # Renew current page to page_anastomosis with stopwatch
+        self.stopwatch_page = self.userinterface.current_page
+        # Calculate time and convert to string
         time_passed = stopwatch.passed
         seconds = time_passed % 60
         minutes = time_passed // 60
         hours   = minutes // 60
         stopwatch_string = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}:{int(time_passed%1*100):02d}"
-        self.userinterface.current_page.itemconfigure(self.stopwatch_page.text_stopwatch,text=stopwatch_string)
+        self.stopwatch_page.itemconfigure(self.stopwatch_page.text_stopwatch,text=stopwatch_string)
