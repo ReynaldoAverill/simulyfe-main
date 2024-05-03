@@ -13,9 +13,9 @@ class Application(tk.Canvas):
         super().__init__(window)
         self.window = window
         self.update_time = ''
-        self.running = False
         
         self.passed = 0
+        self.running = False
         self.started = False
 
         self.hours = 0
@@ -26,11 +26,11 @@ class Application(tk.Canvas):
         self.create_widgets()
 
     def create_widgets(self):
-        self.stopwatch_label = tk.Text(self, text='00:00:00:00', font=('Arial', 80))
+        self.stopwatch_label = tk.Label(self, text='00:00:00:00', font=('Arial', 80))
         self.stopwatch_label.pack()
-        self.start_button = tk.Button(self, text='start', height=5, width=7, font=('Arial', 20), command=self.start)
+        self.start_button = tk.Button(self, text='start', height=5, width=7, font=('Arial', 20), command=self.change_stopwatch_state)
         self.start_button.pack(side=tk.LEFT)
-        self.pause_button = tk.Button(self, text='pause', height=5, width=7, font=('Arial', 20), command=self.pause)
+        self.pause_button = tk.Button(self, text='pause', height=5, width=7, font=('Arial', 20), command=self.change_stopwatch_state)
         self.pause_button.pack(side=tk.LEFT)
         self.reset_button = tk.Button(self, text='reset', height=5, width=7, font=('Arial', 20), command=self.reset)
         self.reset_button.pack(side=tk.LEFT)
@@ -42,9 +42,20 @@ class Application(tk.Canvas):
         if not self.running:
             self.running = True
             threading.Thread(target=self.update_time_stopwatch).start()
-            self.start_button.config(state='disabled')
+            # self.start_button.config(state='disabled')
             # self.stopwatch_label.after(1000)
             # self.update()
+
+    def change_stopwatch_state(self):
+        if self.running:
+            self.running = False
+            # self.pause_button.config(state='disabled')
+            # self.start_button.config(state='active')
+        else:
+            self.running = True
+            # self.start_button.config(state='disabled',text='resume')
+            # self.pause_button.config(state='active')
+            threading.Thread(target=self.update_time_stopwatch).start()
 
     def pause(self):
         if self.running:
@@ -70,10 +81,11 @@ class Application(tk.Canvas):
 
     def update_time_stopwatch(self):
         start = time.time()
-        if self.running:
+        if self.started:
             until_now = self.passed
         else:
             until_now = 0
+            self.started = True
         while self.running:
             self.passed = time.time() - start + until_now
             self.stopwatch_label.config(text=self.format_time_string(self.passed))
