@@ -1,5 +1,5 @@
 import logging
-from tkinter import Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Canvas, Entry, Text, Button, PhotoImage, Label
 from .userinterface_tools import relative_to_assets
 
 page_name = "page_anastomosis"
@@ -88,10 +88,10 @@ class Page_anastomosis(Canvas):
             justify="center"
         )
 
-        # self.itemconfigure(self.text_stopwatch,text="11:22:33:44")
         # self.text_stopwatch_time = "11:22:33:44"
+        # self.itemconfigure(self.text_stopwatch,text=self.text_stopwatch_time)
 
-        # self.config(self.text_stopwatch,text="11:22:33:44")
+        # self.config(self.text_stopwatch,text=self.text_stopwatch_time)
 
         self.create_text(
             620.0,
