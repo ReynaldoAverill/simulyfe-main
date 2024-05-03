@@ -3,6 +3,7 @@ from .window import Window
 from .page_main import Page_main
 from .page_anastomosis import Page_anastomosis
 from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis_to_main
+from .page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,8 @@ class Userinterface:
         self.page_classes = {
             "page_main" : Page_main,
             "page_anastomosis" : Page_anastomosis,
-            "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main
+            "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main,
+            "page_confirmation_anastomosis_to_pump" : Page_confirmation_anastomosis_to_pump
         }
         self.current_page = None
     

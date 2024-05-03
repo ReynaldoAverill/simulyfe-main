@@ -1,7 +1,7 @@
 from userinterface.userinterface import Userinterface
 from controller.controller import Controller
 from model.model import Model
-from test_module.stopwatch_test import start_stopwatch_test
+from userinterface.page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
 
 import logging
 import os
@@ -18,6 +18,8 @@ def main():
         
     model = Model()
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
+    # userinterface.switch_to("page_confirmation_anastomosis_to_pump")
+    # userinterface.start_mainloop()
     controller = Controller(model,userinterface)
     controller.start_app()
 

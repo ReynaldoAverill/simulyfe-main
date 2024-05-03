@@ -138,14 +138,14 @@ class Page_anastomosis(Canvas):
         self.itemconfig=()
         self.button_image_2 = PhotoImage(
             file=relative_to_assets(page_name,"button_2.png"))
-        self.button_2 = Button(
+        self.button_confirmation_to_pump = Button(
             image=self.button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_2 clicked"),
+            command=lambda: print("button_confirmation_to_pump clicked"),
             relief="flat"
         )
-        self.button_2.place(
+        self.button_confirmation_to_pump.place(
             x=680.0,
             y=315.0,
             width=100.0,

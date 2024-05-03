@@ -12,11 +12,17 @@ class Controller_page_anastomosis(Controller_base):
 
     def _bind_with_userinterface(self):
         # pass
-        self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_confirmation())
+        self.page.button_confirmation_to_main.config(command = lambda: self._moveto_page_main_confirmation())
+        self.page.button_confirmation_to_pump.config(command = lambda: self._moveto_page_pump_confirmation())
+
         self.page.button_start_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
         self.page.button_stop_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
         self.page.button_reset_stopwatch.config(command = lambda: self.model.stopwatch.reset_stopwatch())
         
-    def _moveto_page_confirmation(self):
-        logger.info("button main menu pressed")
+    def _moveto_page_main_confirmation(self):
+        logger.info("button back to main menu pressed")
         self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_main")
+
+    def _moveto_page_pump_confirmation(self):
+        logger.info("button go to pump pressed")
+        self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_pump")
