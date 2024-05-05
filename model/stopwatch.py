@@ -25,6 +25,7 @@ class Stopwatch(ObservableModel):
             self.running = False
         self.started = False
         self.passed = 0
+        # self.change_stopwatch_state()
         self.trigger_event("update_stopwatch_view")
         # self.stopwatch_label.config(text=self.format_time_string(self.passed))
 

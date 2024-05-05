@@ -14,10 +14,12 @@ class Controller_page_confirmation_anastomosis_to_main(Controller_base):
         # pass
         self.page.button_to_anastomosis.config(command = lambda: self._moveto_page_anastomosis())
         self.page.button_to_main.config(command = lambda: self._moveto_page_main())
-        # self.page.button_exit.config(command = lambda: self._exit_app())
+
     def _moveto_page_anastomosis(self):
         logger.info("button go to previous menu pressed, change app state")
         self.model.user_state.move_to_new_page("page_anastomosis")
+        
     def _moveto_page_main(self):
         logger.info("button go to main menu pressed, change app state")
         self.model.user_state.move_to_new_page("page_main")
+        self.model.stopwatch.reset_stopwatch()
