@@ -4,6 +4,7 @@ from .page_main import Page_main
 from .page_anastomosis import Page_anastomosis
 from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis_to_main
 from .page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
+from .page_confirmation_pump_to_anastomosis import Page_confirmation_pump_to_anastomosis
 from .page_pump import Page_pump
 from .page_enter_debit import Page_enter_debit
 
@@ -17,6 +18,7 @@ class Userinterface:
             "page_anastomosis" : Page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Page_confirmation_anastomosis_to_pump,
+            "page_confirmation_pump_to_anastomosis" : Page_confirmation_pump_to_anastomosis,
             "page_pump" : Page_pump,
             "page_enter_debit" : Page_enter_debit
         }

@@ -17,15 +17,18 @@ class Page_enter_debit(Canvas):
             highlightthickness = 0,
             relief = "ridge"
         )
+
+        self.debit_value = "000"
         # self.button_dict = {}
 
         self.create_text(
-            400.0,
-            25.0,
-            anchor="nw",
+            590.0,75.0,
+            anchor="c",
             text="ENTER EXPECTED DEBIT (ml/min)",
             fill="#1C666F",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            width=400,
+            justify="center"
         )
 
         self.button_image_1 = PhotoImage(
@@ -239,10 +242,11 @@ class Page_enter_debit(Canvas):
             outline="")
 
         self.create_text(
-            440.0,
-            200.0,
-            anchor="nw",
-            text="123456",
+            590.0,225.0,
+            anchor="c",
+            text=self.debit_value,
             fill="#1C666F",
-            font=("Inter Bold", 80 * -1)
+            font=("Inter", 80 * -1,"bold"),
+            width=180,
+            justify="center"
         )        

@@ -2,6 +2,7 @@ from .controller_page_main import Controller_page_main
 from .controller_page_anastomosis import Controller_page_anastomosis
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
 from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
+from .controller_page_confirmation_pump_to_anastomosis import Controller_page_confirmation_pump_to_anastomosis
 from .controller_page_pump import Controller_page_pump
 from .controller_page_enter_debit import Controller_page_enter_debit
 from .controller_base import Controller_base
@@ -19,6 +20,7 @@ class Controller_userinterface(Controller_base):
             "page_anastomosis" : Controller_page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
+            "page_confirmation_pump_to_anastomosis" : Controller_page_confirmation_pump_to_anastomosis,
             "page_pump" : Controller_page_pump,
             "page_enter_debit" : Controller_page_enter_debit
         }

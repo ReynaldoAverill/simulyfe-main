@@ -9,6 +9,8 @@ class Controller_page_anastomosis(Controller_base):
         super().__init__(model,userinterface)
         self.page: Page_anastomosis = self.userinterface.current_page
         self._bind_with_userinterface()
+        # Update stopwatch view
+        self.model.stopwatch.trigger_event("update_stopwatch_view")
 
     def _bind_with_userinterface(self):
         # pass
