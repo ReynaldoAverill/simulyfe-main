@@ -14,9 +14,6 @@ class Window(Tk):
             size (integer,integer): Dimension of the application (width,height)
         """
         super().__init__()
-        if os.environ.get('DISPLAY','') == '':
-            logger.debug('no display found. Using :0.0')
-            os.environ.__setitem__('DISPLAY', ':0.0')
         logger.debug('Initiate window for user interface')
         self.title(title)
         self.geometry(f'{size[0]}x{size[1]}')

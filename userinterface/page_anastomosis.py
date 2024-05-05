@@ -1,5 +1,5 @@
 import logging
-from tkinter import Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Canvas, Entry, Text, Button, PhotoImage, Label
 from .userinterface_tools import relative_to_assets
 
 page_name = "page_anastomosis"
@@ -17,10 +17,9 @@ class Page_anastomosis(Canvas):
             highlightthickness = 0,
             relief = "ridge"
         )
-        self.text_stopwatch_time = "00:00:00"
+        self.text_stopwatch_time = "00:00:00:00"
         self.text_camera_connectionstatus = "DISCONNECTED"
         self.text_camera_recordingstatus = "NOT RECORDING"
-
         self.create_rectangle(
             120.0,
             345.0,
@@ -79,7 +78,7 @@ class Page_anastomosis(Canvas):
             justify="center"
         )
 
-        self.create_text(
+        self.text_stopwatch = self.create_text(
             410,205,
             anchor="c",
             text=self.text_stopwatch_time,
@@ -88,6 +87,11 @@ class Page_anastomosis(Canvas):
             width=380,
             justify="center"
         )
+
+        # self.text_stopwatch_time = "11:22:33:44"
+        # self.itemconfigure(self.text_stopwatch,text=self.text_stopwatch_time)
+
+        # self.config(self.text_stopwatch,text=self.text_stopwatch_time)
 
         self.create_text(
             620.0,
@@ -131,17 +135,17 @@ class Page_anastomosis(Canvas):
             width=100.0,
             height=100.0
         )
-
+        self.itemconfig=()
         self.button_image_2 = PhotoImage(
             file=relative_to_assets(page_name,"button_2.png"))
-        self.button_2 = Button(
+        self.button_confirmation_to_pump = Button(
             image=self.button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_2 clicked"),
+            command=lambda: print("button_confirmation_to_pump clicked"),
             relief="flat"
         )
-        self.button_2.place(
+        self.button_confirmation_to_pump.place(
             x=680.0,
             y=315.0,
             width=100.0,
@@ -198,14 +202,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_6 = PhotoImage(
             file=relative_to_assets(page_name,"button_6.png"))
-        self.button_6 = Button(
+        self.button_start_stopwatch = Button(
             image=self.button_image_6,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_6 clicked"),
+            command=lambda: print("button_start_stopwatch clicked"),
             relief="flat"
         )
-        self.button_6.place(
+        self.button_start_stopwatch.place(
             x=20.0,
             y=20.0,
             width=240.0,
@@ -214,14 +218,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_7 = PhotoImage(
             file=relative_to_assets(page_name,"button_7.png"))
-        self.button_7 = Button(
+        self.button_stop_stopwatch = Button(
             image=self.button_image_7,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_7 clicked"),
+            command=lambda: print("button_stop_stopwatch clicked"),
             relief="flat"
         )
-        self.button_7.place(
+        self.button_stop_stopwatch.place(
             x=280.0,
             y=20.0,
             width=240.0,
@@ -230,14 +234,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_8 = PhotoImage(
             file=relative_to_assets(page_name,"button_8.png"))
-        self.button_8 = Button(
+        self.button_reset_stopwatch = Button(
             image=self.button_image_8,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_8 clicked"),
+            command=lambda: print("button_reset_stopwatch clicked"),
             relief="flat"
         )
-        self.button_8.place(
+        self.button_reset_stopwatch.place(
             x=540.0,
             y=20.0,
             width=240.0,
