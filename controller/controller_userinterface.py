@@ -2,6 +2,7 @@ from .controller_page_main import Controller_page_main
 from .controller_page_anastomosis import Controller_page_anastomosis
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
 from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
+from .controller_page_pump import Controller_page_pump
 from .controller_base import Controller_base
 from model.user_state import User_state
 
@@ -16,7 +17,8 @@ class Controller_userinterface(Controller_base):
             "page_main" : Controller_page_main,
             "page_anastomosis" : Controller_page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
-            "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump
+            "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
+            "page_pump" : Controller_page_pump
         }
         self.current_pagecontroller = None
         self.add_controller_userinterface_event_listener()
