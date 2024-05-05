@@ -12,11 +12,7 @@ class Controller_page_enter_debit(Controller_base):
         
     def _bind_with_userinterface(self):
         # self.page.button_to_anastomosis.config(command = lambda: self._moveto_page_anastomosis())
-        self.page.button_dict["button_finalize_debit"].config(command = lambda: self._moveto_page_pump())
-      
-    def _moveto_page_anastomosis(self):
-        logger.info("button go to previous menu pressed, change app state")
-        self.model.user_state.move_to_new_page("page_anastomosis")
+        self.page.button_finalize_debit.config(command = lambda: self._moveto_page_pump())
         
     def _moveto_page_pump(self):
         logger.info("button go to pump menu pressed, change app state")
