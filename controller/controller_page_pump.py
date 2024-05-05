@@ -20,5 +20,5 @@ class Controller_page_pump(Controller_base):
         self.model.user_state.move_to_new_page("page_anastomosis")
 
     def _moveto_page_enter_debit(self):
-        logger.info("button go to pump pressed")
-        self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_pump")
+        logger.info("button go to enter debit pressed")
+        self.model.user_state.move_to_new_page("page_enter_debit")
