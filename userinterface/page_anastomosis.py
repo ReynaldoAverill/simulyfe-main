@@ -83,9 +83,9 @@ class Page_anastomosis(Canvas):
             anchor="c",
             text=self.text_stopwatch_time,
             fill="#FFFFFF",
-            font=('Inter', 60 * -1,'bold'),
+            font=('Inter', 55 * -1,'bold'),
             width=380,
-            justify="center"
+            justify="left"
         )
 
         # self.text_stopwatch_time = "11:22:33:44"

@@ -19,7 +19,7 @@ class Window(Tk):
         self.geometry(f'{size[0]}x{size[1]}')
         self.configure(bg = "#000000")
         # Set window into full screen
-        # self.wm_overrideredirect(True)
+        self.wm_overrideredirect(True)
         self.resizable(False, False)
 
 
