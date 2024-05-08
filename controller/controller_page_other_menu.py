@@ -11,15 +11,13 @@ class Controller_page_other_menu(Controller_base):
         self._bind_with_userinterface()
 
     def _bind_with_userinterface(self):
-        # pass
         self.page.button_to_main.config(command = lambda: self._moveto_page_main())
-        # self.page.button_exit.config(command = lambda: self._exit_app())
-        # self.page.button_exit.config(command = lambda: self._exit_app())
+        self.page.button_to_history.config(command= lambda: self._moveto_page_action_history())
 
     def _moveto_page_main(self):
         logger.info("button back pressed, change app state")
         self.model.user_state.move_to_new_page("page_main")
 
-    # def _exit_app(self):
-    #     logger.info("button exit pressed, change app state")
-    #     self.model.user_state.exit()
+    def _moveto_page_action_history(self):
+        logger.info("button history pressed, change app state")
+        self.model.user_state.move_to_new_page("page_action_history")
