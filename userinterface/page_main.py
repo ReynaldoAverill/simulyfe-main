@@ -48,19 +48,19 @@ class Page_main(Canvas):
             height=100.0
         )
 
-        #  button_othermenu
+        #  button_other_menu
         self.button_image_2 = PhotoImage(
         file=relative_to_assets(page_name,"button_2.png"))
-        self.button_othermenu = Button(self,
+        self.button_to_other_menu = Button(self,
             image=self.button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_othermenu clicked"),
+            command=lambda: print("button_to_other_menu clicked"),
             # command=lambda: self2.tkraise(),
             relief="flat"
         )
 
-        self.button_othermenu.place(
+        self.button_to_other_menu.place(
             x=200.0,
             y=346.0,
             width=400.0,

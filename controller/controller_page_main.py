@@ -16,7 +16,12 @@ class Controller_page_main(Controller_base):
         # pass
         self.page.button_start.config(command = lambda: self._moveto_page_anastomosis())
         self.page.button_exit.config(command = lambda: self._exit_app())
+        self.page.button_to_other_menu.config(command= lambda: self._moveto_page_other_menu())
         # self.page.button_exit.config(command = lambda: self._exit_app())
+
+    def _moveto_page_other_menu(self):
+        logger.info("button other menu pressed, change app state")
+        self.model.user_state.move_to_new_page("page_other_menu")
 
     def _moveto_page_anastomosis(self):
         logger.info("button start_pressed, change app state")

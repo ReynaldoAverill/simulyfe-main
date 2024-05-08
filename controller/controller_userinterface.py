@@ -1,5 +1,6 @@
 from .controller_base import Controller_base
 from .controller_page_main import Controller_page_main
+from .controller_page_other_menu import Controller_page_other_menu
 from .controller_page_anastomosis import Controller_page_anastomosis
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
 from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
@@ -19,6 +20,7 @@ class Controller_userinterface(Controller_base):
         super().__init__(model,userinterface)
         self.pagecontroller_classes = {
             "page_main" : Controller_page_main,
+            "page_other_menu" : Controller_page_other_menu,
             "page_anastomosis" : Controller_page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
