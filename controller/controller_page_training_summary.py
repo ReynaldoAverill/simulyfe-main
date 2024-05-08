@@ -16,4 +16,3 @@ class Controller_page_training_summary(Controller_base):
     def _moveto_page_main(self):
         logger.info("button go to main menu pressed, change app state")
         self.model.user_state.move_to_new_page("page_main")
-        self.model.stopwatch.reset_stopwatch()

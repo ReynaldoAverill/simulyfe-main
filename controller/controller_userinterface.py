@@ -4,6 +4,7 @@ from .controller_page_anastomosis import Controller_page_anastomosis
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
 from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
 from .controller_page_confirmation_pump_to_anastomosis import Controller_page_confirmation_pump_to_anastomosis
+from .controller_page_confirmation_pump_to_training_summary import Controller_page_confirmation_pump_to_training_summary
 from .controller_page_pump import Controller_page_pump
 from .controller_page_enter_debit import Controller_page_enter_debit
 from .controller_page_training_summary import Controller_page_training_summary
@@ -22,6 +23,7 @@ class Controller_userinterface(Controller_base):
             "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
             "page_confirmation_pump_to_anastomosis" : Controller_page_confirmation_pump_to_anastomosis,
+            "page_confirmation_pump_to_training_summary" : Controller_page_confirmation_pump_to_training_summary,
             "page_pump" : Controller_page_pump,
             "page_enter_debit" : Controller_page_enter_debit,
             "page_training_summary" : Controller_page_training_summary

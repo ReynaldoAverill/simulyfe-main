@@ -26,4 +26,4 @@ class Controller_page_pump(Controller_base):
 
     def _moveto_page_training_summary_confirmation(self):
         logger.info("button go to training summary pressed")
-        self.model.user_state.move_to_new_page("page_training_summary")
+        self.model.user_state.move_to_new_page("page_confirmation_pump_to_training_summary")
