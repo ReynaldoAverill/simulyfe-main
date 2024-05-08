@@ -1,41 +1,42 @@
 from .controller_page_main import Controller_page_main
 from .controller_page_anastomosis import Controller_page_anastomosis
-from userinterface.userinterface import Userinterface
-from model.model import Model
+from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
+from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
+from .controller_page_confirmation_pump_to_anastomosis import Controller_page_confirmation_pump_to_anastomosis
+from .controller_page_pump import Controller_page_pump
+from .controller_page_enter_debit import Controller_page_enter_debit
+from .controller_base import Controller_base
 from model.user_state import User_state
+
 import logging
 
 logger = logging.getLogger(__name__)
 
-class Controller_userinterface:
-    def __init__(self, model:Model, userinterface: Userinterface):
-        self.model = model
-        self.userinterface = userinterface
-        # self.controller_page_main = Controller_page_main(self.model,self.userinterface)
-        # self.controller_page_anastomosis = Controller_page_anastomosis(self.model,self.userinterface)
-        self.model.user_state.add_event_listener("move_to_page_anastomosis",self.move_to_page_anastomosis)
-        self.model.user_state.add_event_listener("move_to_page_main",self.move_to_page_main)
+class Controller_userinterface(Controller_base):
+    def __init__(self, model, userinterface):
+        super().__init__(model,userinterface)
+        self.pagecontroller_classes = {
+            "page_main" : Controller_page_main,
+            "page_anastomosis" : Controller_page_anastomosis,
+            "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
+            "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
+            "page_confirmation_pump_to_anastomosis" : Controller_page_confirmation_pump_to_anastomosis,
+            "page_pump" : Controller_page_pump,
+            "page_enter_debit" : Controller_page_enter_debit
+        }
+        self.current_pagecontroller = None
+        self.add_controller_userinterface_event_listener()
+    
+    def add_controller_userinterface_event_listener(self):
+        self.model.user_state.add_event_listener("move_to_new_page",self.movepage_and_constructcontroller)
         self.model.user_state.add_event_listener("exit_app",self.exit_app)
 
-    def move_to_page_anastomosis(self,user_state: User_state):
-        if user_state.state == "page_anastomosis":
-            logger.info("Move to Page Anastomosis")
-            self.userinterface.switch_to(str(user_state.state))
-            self.controller_page_main = Controller_page_anastomosis(self.model,self.userinterface)
-    
-    def move_to_page_main(self,user_state: User_state):
-        if user_state.state == "page_main":
-            logger.info("Processing to Move to Page Main")
-            self.userinterface.switch_to(str(user_state.state))
-            self.controller_page_main = Controller_page_main(self.model,self.userinterface)
+    def movepage_and_constructcontroller(self,user_state: User_state):
+        logger.info("Processing to Move to "+str(user_state.state))
+        self.userinterface.switch_to(str(user_state.state))
+        new_controller = self.pagecontroller_classes[user_state.state](self.model,self.userinterface)
+        self.current_pagecontroller = new_controller
     
     def exit_app(self,user_state: User_state):
         logger.info("Processing to close the app")
         self.userinterface.exit_app()
-
-    def start_app(self):
-        if self.model.user_state.state == "page_main":
-            self.userinterface.switch_to("page_main")
-            self.controller_page_main = Controller_page_main(self.model,self.userinterface)
-        self.userinterface.start_mainloop()
-        pass
