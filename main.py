@@ -17,7 +17,7 @@ def main():
         os.environ.__setitem__('DISPLAY', ':0.0')
         
     model = Model()
-    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
+    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),fullscreen=False)
     # userinterface.switch_to("page_confirmation_pump_to_anastomosis")
     # userinterface.start_mainloop()
     controller = Controller(model,userinterface)

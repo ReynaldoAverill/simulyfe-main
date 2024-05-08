@@ -7,12 +7,13 @@ from .page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis
 from .page_confirmation_pump_to_anastomosis import Page_confirmation_pump_to_anastomosis
 from .page_pump import Page_pump
 from .page_enter_debit import Page_enter_debit
+from .page_training_summary import Page_training_summary
 
 logger = logging.getLogger(__name__)
 
 class Userinterface:
-    def __init__(self,title,dimension):
-        self.window = Window(title,dimension)
+    def __init__(self,title,dimension,fullscreen: bool = False):
+        self.window = Window(title,dimension,fullscreen)
         self.page_classes = {
             "page_main" : Page_main,
             "page_anastomosis" : Page_anastomosis,
@@ -20,7 +21,8 @@ class Userinterface:
             "page_confirmation_anastomosis_to_pump" : Page_confirmation_anastomosis_to_pump,
             "page_confirmation_pump_to_anastomosis" : Page_confirmation_pump_to_anastomosis,
             "page_pump" : Page_pump,
-            "page_enter_debit" : Page_enter_debit
+            "page_enter_debit" : Page_enter_debit,
+            "page_training_summary" : Page_training_summary
         }
         self.current_page = None
     

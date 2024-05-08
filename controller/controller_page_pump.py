@@ -14,6 +14,7 @@ class Controller_page_pump(Controller_base):
         # pass
         self.page.button_back_to_anastomosis.config(command = lambda: self._moveto_page_anastomosis_confirmation())
         self.page.button_change_debit.config(command = lambda: self._moveto_page_enter_debit())
+        self.page.button_finalize.config(command = lambda: self._moveto_page_training_summary_confirmation())
 
     def _moveto_page_anastomosis_confirmation(self):
         logger.info("button back to anastomosis pressed")
@@ -22,3 +23,7 @@ class Controller_page_pump(Controller_base):
     def _moveto_page_enter_debit(self):
         logger.info("button go to enter debit pressed")
         self.model.user_state.move_to_new_page("page_enter_debit")
+
+    def _moveto_page_training_summary_confirmation(self):
+        logger.info("button go to training summary pressed")
+        self.model.user_state.move_to_new_page("page_training_summary")
