@@ -13,6 +13,8 @@ class Controller_page_other_menu(Controller_base):
     def _bind_with_userinterface(self):
         self.page.button_to_main.config(command = lambda: self._moveto_page_main())
         self.page.button_to_history.config(command= lambda: self._moveto_page_action_history())
+        self.page.button_to_help.config(command= lambda: self._moveto_page_help())
+        
 
     def _moveto_page_main(self):
         logger.info("button back pressed, change app state")
@@ -21,3 +23,7 @@ class Controller_page_other_menu(Controller_base):
     def _moveto_page_action_history(self):
         logger.info("button history pressed, change app state")
         self.model.user_state.move_to_new_page("page_action_history")
+    
+    def _moveto_page_help(self):
+        logger.info("button history pressed, change app state")
+        self.model.user_state.move_to_new_page("page_help")

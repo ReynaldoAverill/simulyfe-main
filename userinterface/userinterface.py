@@ -4,6 +4,7 @@ from .window import Window
 from .page_main import Page_main
 from .page_other_menu import Page_other_menu
 from .page_action_history import Page_action_history
+from .page_help import Page_help
 from .page_anastomosis import Page_anastomosis
 from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis_to_main
 from .page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
@@ -22,6 +23,7 @@ class Userinterface:
             "page_main" : Page_main,
             "page_other_menu" : Page_other_menu,
             "page_action_history" : Page_action_history,
+            "page_help" : Page_help,
             "page_anastomosis" : Page_anastomosis,
             "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Page_confirmation_anastomosis_to_pump,
