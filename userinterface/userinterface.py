@@ -6,6 +6,8 @@ from .page_other_menu import Page_other_menu
 from .page_action_history import Page_action_history
 from .page_help import Page_help
 from .page_anastomosis import Page_anastomosis
+from .page_anastomosis_camera import Page_anastomosis_camera
+from .page_anastomosis_suturing_force import Page_anastomosis_suturing_force
 from .page_confirmation_anastomosis_to_main import Page_confirmation_anastomosis_to_main
 from .page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
 from .page_confirmation_pump_to_anastomosis import Page_confirmation_pump_to_anastomosis
@@ -25,6 +27,8 @@ class Userinterface:
             "page_action_history" : Page_action_history,
             "page_help" : Page_help,
             "page_anastomosis" : Page_anastomosis,
+            "page_anastomosis_suturing_force" : Page_anastomosis_suturing_force,
+            "page_anastomosis_camera" : Page_anastomosis_camera,
             "page_confirmation_anastomosis_to_main" : Page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Page_confirmation_anastomosis_to_pump,
             "page_confirmation_pump_to_anastomosis" : Page_confirmation_pump_to_anastomosis,

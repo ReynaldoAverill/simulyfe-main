@@ -17,7 +17,7 @@ class Controller_page_confirmation_anastomosis_to_main(Controller_base):
 
     def _moveto_page_anastomosis(self):
         logger.info("button go to previous menu pressed, change app state")
-        self.model.user_state.move_to_new_page("page_anastomosis")
+        self.model.user_state.back_to_page_anastomosis_from_confirmation()
         
     def _moveto_page_main(self):
         logger.info("button go to main menu pressed, change app state")

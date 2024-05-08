@@ -2,10 +2,10 @@ import logging
 from tkinter import Canvas, Entry, Text, Button, PhotoImage, Label
 from .userinterface_tools import relative_to_assets
 
-page_name = "page_anastomosis"
+page_name = "page_anastomosis_camera"
 logger = logging.getLogger(__name__)
 
-class Page_anastomosis(Canvas):
+class Page_anastomosis_camera(Canvas):
     def __init__(self,parent):
         super().__init__(parent)
         logger.debug("Create "+str(page_name)+" canvas")
@@ -208,14 +208,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_6 = PhotoImage(
             file=relative_to_assets(page_name,"button_6.png"))
-        self.button_start_stopwatch = Button(
+        self.button_start_recording = Button(
             image=self.button_image_6,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_start_stopwatch clicked"),
+            command=lambda: print("button_start_recording clicked"),
             relief="flat"
         )
-        self.button_start_stopwatch.place(
+        self.button_start_recording.place(
             x=20.0,
             y=20.0,
             width=240.0,
@@ -224,14 +224,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_7 = PhotoImage(
             file=relative_to_assets(page_name,"button_7.png"))
-        self.button_stop_stopwatch = Button(
+        self.button_stop_recording = Button(
             image=self.button_image_7,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_stop_stopwatch clicked"),
+            command=lambda: print("button_stop_recording clicked"),
             relief="flat"
         )
-        self.button_stop_stopwatch.place(
+        self.button_stop_recording.place(
             x=280.0,
             y=20.0,
             width=240.0,
@@ -240,14 +240,14 @@ class Page_anastomosis(Canvas):
 
         self.button_image_8 = PhotoImage(
             file=relative_to_assets(page_name,"button_8.png"))
-        self.button_reset_stopwatch = Button(
+        self.button_reset_recording = Button(
             image=self.button_image_8,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_reset_stopwatch clicked"),
+            command=lambda: print("button_reset_recording clicked"),
             relief="flat"
         )
-        self.button_reset_stopwatch.place(
+        self.button_reset_recording.place(
             x=540.0,
             y=20.0,
             width=240.0,

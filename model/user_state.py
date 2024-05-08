@@ -24,3 +24,11 @@ class User_state(ObservableModel):
     def exit(self):
         self.state = "exit"
         self.trigger_event("exit_app")
+
+    def back_to_page_anastomosis_from_confirmation(self):
+        if self.prev_state == "page_anastomosis_suturing_force":
+            self.move_to_new_page("page_anastomosis_suturing_force")
+        elif self.prev_state == "page_anastomosis_camera":
+            self.move_to_new_page("page_anastomosis_camera")
+        else:
+            self.move_to_new_page("page_anastomosis")
