@@ -17,15 +17,11 @@ def main():
         os.environ.__setitem__('DISPLAY', ':0.0')
         
     model = Model()
-    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
-    # userinterface.switch_to("page_confirmation_pump_to_anastomosis")
+    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),fullscreen=False)
+    # userinterface.switch_to("page_anastomosis_suturingforce")
     # userinterface.start_mainloop()
     controller = Controller(model,userinterface)
     controller.start_app()
-
-    # userinterface.switch_to("page_confirmation_anastomosis_to_main")
-    # userinterface.switch_to("page_main")
-    # userinterface.start_mainloop()
 
 if __name__ == "__main__":
     main()

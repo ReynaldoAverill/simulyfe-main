@@ -1,11 +1,18 @@
+from .controller_base import Controller_base
 from .controller_page_main import Controller_page_main
+from .controller_page_other_menu import Controller_page_other_menu
+from .controller_page_action_history import Controller_page_action_history
+from .controller_page_help import Controller_page_help
 from .controller_page_anastomosis import Controller_page_anastomosis
+from .controller_page_anastomosis_suturing_force import Controller_page_anastomosis_suturing_force
+from .controller_page_anastomosis_camera import Controller_page_anastomosis_camera
 from .controller_page_confirmation_anastomosis_to_main import Controller_page_confirmation_anastomosis_to_main
 from .controller_page_confirmation_anastomosis_to_pump import Controller_page_confirmation_anastomosis_to_pump
 from .controller_page_confirmation_pump_to_anastomosis import Controller_page_confirmation_pump_to_anastomosis
+from .controller_page_confirmation_pump_to_training_summary import Controller_page_confirmation_pump_to_training_summary
 from .controller_page_pump import Controller_page_pump
 from .controller_page_enter_debit import Controller_page_enter_debit
-from .controller_base import Controller_base
+from .controller_page_training_summary import Controller_page_training_summary
 from model.user_state import User_state
 
 import logging
@@ -17,12 +24,19 @@ class Controller_userinterface(Controller_base):
         super().__init__(model,userinterface)
         self.pagecontroller_classes = {
             "page_main" : Controller_page_main,
+            "page_other_menu" : Controller_page_other_menu,
+            "page_action_history" : Controller_page_action_history,
+            "page_help" : Controller_page_help,
             "page_anastomosis" : Controller_page_anastomosis,
+            "page_anastomosis_suturing_force" : Controller_page_anastomosis_suturing_force,
+            "page_anastomosis_camera" : Controller_page_anastomosis_camera,
             "page_confirmation_anastomosis_to_main" : Controller_page_confirmation_anastomosis_to_main,
             "page_confirmation_anastomosis_to_pump" : Controller_page_confirmation_anastomosis_to_pump,
             "page_confirmation_pump_to_anastomosis" : Controller_page_confirmation_pump_to_anastomosis,
+            "page_confirmation_pump_to_training_summary" : Controller_page_confirmation_pump_to_training_summary,
             "page_pump" : Controller_page_pump,
-            "page_enter_debit" : Controller_page_enter_debit
+            "page_enter_debit" : Controller_page_enter_debit,
+            "page_training_summary" : Controller_page_training_summary
         }
         self.current_pagecontroller = None
         self.add_controller_userinterface_event_listener()

@@ -2,10 +2,10 @@ import logging
 from tkinter import Canvas, Entry, Text, Button, PhotoImage, Label
 from .userinterface_tools import relative_to_assets
 
-page_name = "page_anastomosis"
+page_name = "page_anastomosis_suturing_force"
 logger = logging.getLogger(__name__)
 
-class Page_anastomosis(Canvas):
+class Page_anastomosis_suturing_force(Canvas):
     def __init__(self,parent):
         super().__init__(parent)
         logger.debug("Create "+str(page_name)+" canvas")
@@ -20,6 +20,51 @@ class Page_anastomosis(Canvas):
         self.text_stopwatch_time = "00:00:00:00"
         self.text_camera_connectionstatus = "DISCONNECTED"
         self.text_camera_recordingstatus = "NOT RECORDING"
+        self.text_suturing_force_measured = "WEAK"
+
+        # Measurement bar
+        self.create_rectangle(
+            40.0,
+            40.0,
+            220.0,
+            110.0,
+            fill="#00FF00",
+            outline="")
+
+        self.create_rectangle(
+            220.0,
+            40.0,
+            400.0,
+            110.0,
+            fill="#FFF400",
+            outline="")
+
+        self.create_rectangle(
+            400.0,
+            40.0,
+            580.0,
+            110.0,
+            fill="#FF0000",
+            outline="")
+        
+        self.create_rectangle(
+            20.0,
+            20.0,
+            60.0,
+            130.0,
+            fill="#1C666F",
+            outline="")
+        
+        self.text_suturing_force = self.create_text(
+            620.0,
+            55.0,
+            anchor="nw",
+            text=self.text_suturing_force_measured,
+            fill="#00FF00",
+            font=("Inter Bold", 30 * -1)
+        )
+
+        # Decorator rectangle
         self.create_rectangle(
             120.0,
             345.0,
@@ -204,52 +249,4 @@ class Page_anastomosis(Canvas):
             y=280.0,
             width=160.0,
             height=160.0
-        )
-
-        self.button_image_6 = PhotoImage(
-            file=relative_to_assets(page_name,"button_6.png"))
-        self.button_start_stopwatch = Button(
-            image=self.button_image_6,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: print("button_start_stopwatch clicked"),
-            relief="flat"
-        )
-        self.button_start_stopwatch.place(
-            x=20.0,
-            y=20.0,
-            width=240.0,
-            height=110.0
-        )
-
-        self.button_image_7 = PhotoImage(
-            file=relative_to_assets(page_name,"button_7.png"))
-        self.button_stop_stopwatch = Button(
-            image=self.button_image_7,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: print("button_stop_stopwatch clicked"),
-            relief="flat"
-        )
-        self.button_stop_stopwatch.place(
-            x=280.0,
-            y=20.0,
-            width=240.0,
-            height=110.0
-        )
-
-        self.button_image_8 = PhotoImage(
-            file=relative_to_assets(page_name,"button_8.png"))
-        self.button_reset_stopwatch = Button(
-            image=self.button_image_8,
-            borderwidth=0,
-            highlightthickness=0,
-            command=lambda: print("button_reset_stopwatch clicked"),
-            relief="flat"
-        )
-        self.button_reset_stopwatch.place(
-            x=540.0,
-            y=20.0,
-            width=240.0,
-            height=110.0
         )

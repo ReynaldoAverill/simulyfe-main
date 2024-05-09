@@ -6,7 +6,7 @@ from .page_main import Page_main
 logger = logging.getLogger(__name__)
 
 class Window(Tk):
-    def __init__(self,title,size):
+    def __init__(self,title,size,fullscreen: bool):
         """_summary_
 
         Args:
@@ -19,7 +19,7 @@ class Window(Tk):
         self.geometry(f'{size[0]}x{size[1]}')
         self.configure(bg = "#000000")
         # Set window into full screen
-        # self.wm_overrideredirect(True)
+        self.wm_overrideredirect(fullscreen)
         self.resizable(False, False)
 
 
