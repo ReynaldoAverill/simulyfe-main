@@ -18,10 +18,10 @@ class Page_pump(Canvas):
             relief = "ridge"
         ) 
 
-        self.text_debit_accuracy_percent = "000 %"
-        self.text_pump_state = "OFF"
-        self.text_measured_debit_value = "xx\nml/min"
-        self.text_setpoint_debit_value = "xx\nml/min"
+        self.text_default_debit_accuracy = "000 %"
+        self.text_default_pump_state = "OFF"
+        self.text_default_measured_debit_value = "xxx\nml/min"
+        self.text_default_setpoint_debit_value = "xxx\nml/min"
 
         self.create_rectangle(
             390.0,
@@ -96,6 +96,10 @@ class Page_pump(Canvas):
             height=160.0
         )
 
+        # Image for button when pump is turned_on
+        self.button_image_5 = PhotoImage(
+            file=relative_to_assets(page_name,"button_5.png"))
+
         self.button_image_4 = PhotoImage(
             file=relative_to_assets(page_name,"button_4.png"))
         self.button_change_debit = Button(
@@ -135,7 +139,7 @@ class Page_pump(Canvas):
             410,
             205,
             anchor="c",
-            text=self.text_debit_accuracy_percent,
+            text=self.text_default_debit_accuracy,
             fill="#FFFFFF",
             font=("Inter", 60 * -1,"bold"),
             width=380,
@@ -154,7 +158,7 @@ class Page_pump(Canvas):
             700,
             240,
             anchor="c",
-            text=self.text_pump_state,
+            text=self.text_default_pump_state,
             fill="#FF0000",
             font=("Inter", 30 * -1,"bold"),
             width=380,
@@ -195,7 +199,7 @@ class Page_pump(Canvas):
             300,
             75,
             anchor="c",
-            text=self.text_measured_debit_value,
+            text=self.text_default_measured_debit_value,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             width=370,
@@ -225,9 +229,22 @@ class Page_pump(Canvas):
             690,
             75,
             anchor="c",
-            text=self.text_setpoint_debit_value,
+            text=self.text_default_setpoint_debit_value,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             width=180,
             justify="center"
+        )
+    
+    def pump_turned_on_view(self):
+        self.button_change_pump_state.config(image=self.button_image_5)
+        self.button_change_debit.place_forget()
+    
+    def pump_turned_off_view(self):
+        self.button_change_pump_state.config(image=self.button_image_3)
+        self.button_change_debit.place(
+            x=410.0,
+            y=285.0,
+            width=160.0,
+            height=160.0
         )

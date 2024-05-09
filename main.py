@@ -1,13 +1,12 @@
 from userinterface.userinterface import Userinterface
 from controller.controller import Controller
 from model.model import Model
-from userinterface.page_confirmation_anastomosis_to_pump import Page_confirmation_anastomosis_to_pump
 
 import logging
 import os
 
 # Set level for config
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def main():

@@ -1,4 +1,6 @@
 from .controller_base import Controller_base
+from model.user_state import User_state
+
 from .controller_page_main import Controller_page_main
 from .controller_page_other_menu import Controller_page_other_menu
 from .controller_page_action_history import Controller_page_action_history
@@ -13,7 +15,6 @@ from .controller_page_confirmation_pump_to_training_summary import Controller_pa
 from .controller_page_pump import Controller_page_pump
 from .controller_page_enter_debit import Controller_page_enter_debit
 from .controller_page_training_summary import Controller_page_training_summary
-from model.user_state import User_state
 
 import logging
 
@@ -54,3 +55,5 @@ class Controller_userinterface(Controller_base):
     def exit_app(self,user_state: User_state):
         logger.info("Processing to close the app")
         self.userinterface.exit_app()
+
+    
