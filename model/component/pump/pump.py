@@ -13,29 +13,29 @@ class Pump(ObservableModel):
         self.setpoint_debit :int = 0
         self.total_debit_digit: int = 0
         self.current_digit: int = 0
+        self.initiate_pump_gpio()
     
     def change_pump_state(self):
         if self.state:
             self.state = False
             logger.info("Pump turned off")
-            self.trigger_event("change_button_layout")
+            self.trigger_event("turn_off_pump")
         else:
             self.state = True
             logger.info("Pump turned on")
-            threading.Thread(target= lambda: self.trigger_event("change_pump_state")).start()
-    
-    def change_pump_pwm(self, new_pwm):
-        self.duty_cycle = new_pwm
+            threading.Thread(target= lambda: self.trigger_event("turn_on_pump")).start()
         
     def get_pump_setpoint_debit(self,new_number):
         if self.state:
-            self.change_pump_state()
+            self.trigger_event("turn_off_pump")
+            # self.change_pump_state()
         self.current_digit = new_number
         self.trigger_event("get_pump_setpoint_debit")
 
     def delete_digit_setpoint_debit(self):
         if self.state:
-            self.change_pump_state()
+            self.trigger_event("turn_off_pump")
+            # self.change_pump_state()
         self.trigger_event("delete_digit_setpoint_debit")
 
     def converter_setpoint_debit_to_pmw(self, set_point_debit):
@@ -52,4 +52,5 @@ class Pump(ObservableModel):
                 GPIO.setup(const.PIN_PWM,GPIO.OUT)
                 GPIO.setup(const.PIN_PUMP_ENABLE_A, GPIO.OUT)
                 GPIO.setup(const.PIN_PUMP_ENABLE_B, GPIO.OUT)
-                self.pwm = GPIO(const.PIN_PWM,const.FREQ_PWM)
+                self.pwm: GPIO.PWM = GPIO.PWM(const.PIN_PWM,const.FREQ_PWM)
+                self.pwm.start(self.duty_cycle)

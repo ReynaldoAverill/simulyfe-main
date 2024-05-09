@@ -12,7 +12,8 @@ class Controller_pump(Controller_base):
         super().__init__(model,userinterface)
         self.model.pump.add_event_listener("get_pump_setpoint_debit",self.get_pump_setpoint_debit)
         self.model.pump.add_event_listener("delete_digit_setpoint_debit",self.delete_digit_setpoint_debit)
-        self.model.pump.add_event_listener("change_pump_state",self.change_pump_state)
+        self.model.pump.add_event_listener("turn_off_pump",self.turn_off_pump)
+        self.model.pump.add_event_listener("turn_on_pump",self.turn_on_pump)
         self.model.pump.add_event_listener("change_button_layout",self.change_button_layout)
         self.model.pump.add_event_listener("update_setpoint_debit_view",self.update_setpoint_debit_view)
 
@@ -46,9 +47,27 @@ class Controller_pump(Controller_base):
         else:
             logger.error("Current page doesn't have to show the debit. Debit update skipped")
 
-    def change_pump_state(self, pump: Pump):
+    def turn_off_pump(self, pump: Pump):
+        self.change_button_layout(pump)
+        if const.RASPBERRYPI:
+            import RPi.GPIO as GPIO
+            GPIO.output(const.PIN_PUMP_ENABLE_A, GPIO.LOW)
+            GPIO.output(const.PIN_PUMP_ENABLE_B, GPIO.LOW)
+            pump.pwm.ChangeDutyCycle(0)
+    
+    def turn_on_pump(self, pump: Pump):
         self.change_button_layout(pump)
         logger.info("Pump is activated with debit {debit} {unit}".format(debit=pump.setpoint_debit,unit=const.DEBIT_UNIT))
+        if const.RASPBERRYPI:
+            import RPi.GPIO as GPIO
+            if const.DIR_A_TO_B:
+                GPIO.output(const.PIN_PUMP_ENABLE_A,GPIO.HIGH)
+                GPIO.output(const.PIN_PUMP_ENABLE_B,GPIO.LOW)
+            else:
+                GPIO.output(const.PIN_PUMP_ENABLE_B,GPIO.HIGH)
+                GPIO.output(const.PIN_PUMP_ENABLE_A,GPIO.LOW)
+            pump.converter_setpoint_debit_to_pmw(pump.setpoint_debit)
+            pump.pwm.ChangeDutyCycle(pump.duty_cycle)
 
     def change_button_layout(self, pump: Pump):
         pump_page: Page_pump = self.userinterface.current_page
