@@ -83,7 +83,7 @@ class Page_training_summary(Canvas):
             anchor="nw",
             text="MEASURED DEBIT",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold")
         )
 
         self.create_text(

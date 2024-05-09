@@ -241,7 +241,7 @@ class Page_enter_debit(Canvas):
             fill="#F5F5F5",
             outline="")
 
-        self.create_text(
+        self.text_debit_value = self.create_text(
             590.0,225.0,
             anchor="c",
             text=self.debit_value,

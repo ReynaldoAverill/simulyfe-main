@@ -1,0 +1,8 @@
+# OS Constant
+LINUX = True
+
+# Pump Constant
+MAX_DIGIT_DEBIT = 3
+PIN_PWM = 13
+PIN_PUMP_ENABLE_A = 19
+PIN_PUMP_ENABLE_B = 26
