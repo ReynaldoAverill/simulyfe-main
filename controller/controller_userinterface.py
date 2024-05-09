@@ -1,4 +1,7 @@
 from .controller_base import Controller_base
+from model.user_state import User_state
+from model.component.pump.pump import Pump
+
 from .controller_page_main import Controller_page_main
 from .controller_page_other_menu import Controller_page_other_menu
 from .controller_page_action_history import Controller_page_action_history
@@ -13,7 +16,6 @@ from .controller_page_confirmation_pump_to_training_summary import Controller_pa
 from .controller_page_pump import Controller_page_pump
 from .controller_page_enter_debit import Controller_page_enter_debit
 from .controller_page_training_summary import Controller_page_training_summary
-from model.user_state import User_state
 
 import logging
 
@@ -44,6 +46,7 @@ class Controller_userinterface(Controller_base):
     def add_controller_userinterface_event_listener(self):
         self.model.user_state.add_event_listener("move_to_new_page",self.movepage_and_constructcontroller)
         self.model.user_state.add_event_listener("exit_app",self.exit_app)
+        self.model.pump.add_event_listener("get_setpoint_debit",self.get_setpoint_debit)
 
     def movepage_and_constructcontroller(self,user_state: User_state):
         logger.info("Processing to Move to "+str(user_state.state))
@@ -54,3 +57,5 @@ class Controller_userinterface(Controller_base):
     def exit_app(self,user_state: User_state):
         logger.info("Processing to close the app")
         self.userinterface.exit_app()
+
+    def get_setpoint_debit(self, pump: Pump)

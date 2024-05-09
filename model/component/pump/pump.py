@@ -20,7 +20,9 @@ class Pump(ObservableModel):
         self.pwm = new_pwm
 
     def change_pump_setpoint_debit(self,new_setpoint_debit):
-        self.setpoint_debit = new_setpoint_debit
+        if self.state:
+            self.change_pump_state()
+        self.trigger_event("get_setpoint_debit")
 
     def converter_setpoint_debit_to_pmw(self, set_point_debit):
         self.pwm = set_point_debit # need adjustment later
