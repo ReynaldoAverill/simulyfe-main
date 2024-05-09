@@ -96,6 +96,10 @@ class Page_pump(Canvas):
             height=160.0
         )
 
+        # Image for button when pump is turned_on
+        self.button_image_5 = PhotoImage(
+            file=relative_to_assets(page_name,"button_5.png"))
+
         self.button_image_4 = PhotoImage(
             file=relative_to_assets(page_name,"button_4.png"))
         self.button_change_debit = Button(
@@ -230,4 +234,17 @@ class Page_pump(Canvas):
             font=("Inter", 40 * -1,"bold"),
             width=180,
             justify="center"
+        )
+    
+    def pump_turned_on_view(self):
+        self.button_change_pump_state.config(image=self.button_image_5)
+        self.button_change_debit.place_forget()
+    
+    def pump_turned_off_view(self):
+        self.button_change_pump_state.config(image=self.button_image_3)
+        self.button_change_debit.place(
+            x=410.0,
+            y=285.0,
+            width=160.0,
+            height=160.0
         )
