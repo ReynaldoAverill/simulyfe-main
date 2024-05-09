@@ -18,10 +18,10 @@ class Page_pump(Canvas):
             relief = "ridge"
         ) 
 
-        self.text_debit_accuracy_percent = "000 %"
-        self.text_pump_state = "OFF"
-        self.text_measured_debit_value = "xx\nml/min"
-        self.text_setpoint_debit_value = "xx\nml/min"
+        self.text_default_debit_accuracy = "000 %"
+        self.text_default_pump_state = "OFF"
+        self.text_default_measured_debit_value = "xxx\nml/min"
+        self.text_default_setpoint_debit_value = "xxx\nml/min"
 
         self.create_rectangle(
             390.0,
@@ -135,7 +135,7 @@ class Page_pump(Canvas):
             410,
             205,
             anchor="c",
-            text=self.text_debit_accuracy_percent,
+            text=self.text_default_debit_accuracy,
             fill="#FFFFFF",
             font=("Inter", 60 * -1,"bold"),
             width=380,
@@ -154,7 +154,7 @@ class Page_pump(Canvas):
             700,
             240,
             anchor="c",
-            text=self.text_pump_state,
+            text=self.text_default_pump_state,
             fill="#FF0000",
             font=("Inter", 30 * -1,"bold"),
             width=380,
@@ -195,7 +195,7 @@ class Page_pump(Canvas):
             300,
             75,
             anchor="c",
-            text=self.text_measured_debit_value,
+            text=self.text_default_measured_debit_value,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             width=370,
@@ -225,7 +225,7 @@ class Page_pump(Canvas):
             690,
             75,
             anchor="c",
-            text=self.text_setpoint_debit_value,
+            text=self.text_default_setpoint_debit_value,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             width=180,

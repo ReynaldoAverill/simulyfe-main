@@ -6,7 +6,7 @@ import logging
 import os
 
 # Set level for config
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def main():

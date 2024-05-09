@@ -9,6 +9,8 @@ class Controller_page_pump(Controller_base):
         super().__init__(model,userinterface)
         self.page: Page_pump = self.userinterface.current_page
         self._bind_with_userinterface()
+        # Update input debit view
+        self.model.pump.update_setpoint_debit_view()
 
     def _bind_with_userinterface(self):
         # pass

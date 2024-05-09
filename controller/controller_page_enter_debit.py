@@ -9,6 +9,7 @@ class Controller_page_enter_debit(Controller_base):
         super().__init__(model,userinterface)
         self.page: Page_enter_debit = self.userinterface.current_page
         self._bind_with_userinterface()
+        self.model.pump.trigger_event("update_setpoint_debit_view")
         
     def _bind_with_userinterface(self):
         # self.page.button_to_anastomosis.config(command = lambda: self._moveto_page_anastomosis())

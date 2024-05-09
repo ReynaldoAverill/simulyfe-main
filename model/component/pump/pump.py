@@ -31,8 +31,8 @@ class Pump(ObservableModel):
             self.change_pump_state()
         self.trigger_event("delete_digit_setpoint_debit")
     
-    def finalize_pump_setpoint_debit(self):
-        self.trigger_event("finalize_pump_setpoint_debit")
+    def update_setpoint_debit_view(self):
+        self.trigger_event("update_setpoint_debit_view")
 
     def converter_setpoint_debit_to_pmw(self, set_point_debit):
         self.pwm = set_point_debit # need adjustment later
