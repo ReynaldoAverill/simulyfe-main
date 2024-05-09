@@ -14,8 +14,7 @@ class Controller(Controller_base):
         super().__init__(model,userinterface)
         self.userinterface_controller = Controller_userinterface(self.model,self.userinterface)
         self.stopwatch_controller = Controller_stopwatch(self.model,self.userinterface)
-        if const.RASPBERRYPI:
-            self.pump_controller = Controller_pump(self.model,self.userinterface)
+        self.pump_controller = Controller_pump(self.model,self.userinterface)
 
     def start_app(self):
         if self.model.user_state.state == "page_main":

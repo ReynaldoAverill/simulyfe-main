@@ -1,4 +1,5 @@
 import threading
+import model.constant as const
 from model.base import ObservableModel
 
 import logging
@@ -8,7 +9,7 @@ class Pump(ObservableModel):
     def __init__(self):
         super().__init__()
         self.state  : bool = False
-        self.pwm    : int = 0
+        self.duty_cycle    : int = 0
         self.setpoint_debit :int = 0
         self.total_debit_digit: int = 0
         self.current_digit: int = 0
@@ -24,7 +25,7 @@ class Pump(ObservableModel):
             threading.Thread(target= lambda: self.trigger_event("change_pump_state")).start()
     
     def change_pump_pwm(self, new_pwm):
-        self.pwm = new_pwm
+        self.duty_cycle = new_pwm
         
     def get_pump_setpoint_debit(self,new_number):
         if self.state:
@@ -38,4 +39,17 @@ class Pump(ObservableModel):
         self.trigger_event("delete_digit_setpoint_debit")
 
     def converter_setpoint_debit_to_pmw(self, set_point_debit):
-        self.pwm = set_point_debit # need adjustment later
+        self.duty_cycle = set_point_debit # need adjustment later
+
+    def initiate_pump_gpio(self):
+        if const.RASPBERRYPI:
+            try:
+                import RPi.GPIO as GPIO
+            except:
+                logger.error("GPIO cannot be defined. Import GPIO will be skipped")
+            else:
+                GPIO.setmode(GPIO.BCM)
+                GPIO.setup(const.PIN_PWM,GPIO.OUT)
+                GPIO.setup(const.PIN_PUMP_ENABLE_A, GPIO.OUT)
+                GPIO.setup(const.PIN_PUMP_ENABLE_B, GPIO.OUT)
+                self.pwm = GPIO(const.PIN_PWM,const.FREQ_PWM)

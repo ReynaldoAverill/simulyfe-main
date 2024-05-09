@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 import time
 
 # Definisikan pin yang akan digunakan
-pinA = 9  # Kalo high, air masuk dari pipa kanan
-pinB = 10  # Kalo high, air masuk dari pipa kiri
-pin_pwm = 11
+pinA = 19  # Kalo high, air masuk dari pipa kanan
+pinB = 26  # Kalo high, air masuk dari pipa kiri
+pin_pwm = 13
 
 # Konfigurasi GPIO
 GPIO.setmode(GPIO.BCM)
