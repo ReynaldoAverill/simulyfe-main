@@ -18,7 +18,7 @@ def main():
         
     model = Model()
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),fullscreen=False)
-    # userinterface.switch_to("page_anastomosis_suturingforce")
+    # userinterface.switch_to("page_pump")
     # userinterface.start_mainloop()
     controller = Controller(model,userinterface)
     controller.start_app()

@@ -141,7 +141,7 @@ class Page_anastomosis(Canvas):
             width=100.0,
             height=100.0
         )
-        self.itemconfig=()
+        
         self.button_image_2 = PhotoImage(
             file=relative_to_assets(page_name,"button_2.png"))
         self.button_confirmation_to_pump = Button(

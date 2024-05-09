@@ -18,6 +18,11 @@ class Page_pump(Canvas):
             relief = "ridge"
         ) 
 
+        self.text_debit_accuracy_percent = "000 %"
+        self.text_pump_state = "OFF"
+        self.text_measured_debit_value = "xx\nml/min"
+        self.text_setpoint_debit_value = "xx\nml/min"
+
         self.create_rectangle(
             390.0,
             345.0,
@@ -116,21 +121,25 @@ class Page_pump(Canvas):
             outline="")
 
         self.create_text(
-            22.0,
-            180.0,
-            anchor="nw",
+            120,
+            205,
+            anchor="c",
             text="DEBIT\nACCURACY",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            width=200,
+            justify="center"
         )
 
-        self.create_text(
-            220.0,
-            180.0,
-            anchor="nw",
-            text="xxx %",
+        self.text_debit_accuracy = self.create_text(
+            410,
+            205,
+            anchor="c",
+            text=self.text_debit_accuracy_percent,
             fill="#FFFFFF",
-            font=("Inter Bold", 60 * -1)
+            font=("Inter", 60 * -1,"bold"),
+            width=380,
+            justify="center"
         )
 
         self.create_rectangle(
@@ -141,22 +150,26 @@ class Page_pump(Canvas):
             fill="#5DA295",
             outline="")
 
-        self.create_text(
-            620.0,
-            225.0,
-            anchor="nw",
-            text="OFF",
-            fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+        self.text_pump = self.create_text(
+            700,
+            240,
+            anchor="c",
+            text=self.text_pump_state,
+            fill="#FF0000",
+            font=("Inter", 30 * -1,"bold"),
+            width=380,
+            justify="center"
         )
 
         self.create_text(
-            620.0,
-            151.0,
-            anchor="nw",
+            700,
+            185,
+            anchor="c",
             text="PUMP STATUS",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            width=160,
+            justify="center"
         )
 
         self.create_rectangle(
@@ -168,21 +181,25 @@ class Page_pump(Canvas):
             outline="")
 
         self.create_text(
-            22.0,
-            50.0,
-            anchor="nw",
+            115,
+            75,
+            anchor="c",
             text="MEASURED DEBIT",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            width=180,
+            justify="center"
         )
 
-        self.create_text(
-            212.0,
-            50.0,
-            anchor="nw",
-            text="xx \nml/min",
+        self.text_measured_debit = self.create_text(
+            300,
+            75,
+            anchor="c",
+            text=self.text_measured_debit_value,
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            width=370,
+            justify="center"
         )
 
         self.create_rectangle(
@@ -194,19 +211,23 @@ class Page_pump(Canvas):
             outline="")
 
         self.create_text(
-            410.0,
-            50.0,
-            anchor="nw",
-            text="EXPECTED DEBIT",
+            505,
+            75,
+            anchor="c",
+            text="SETPOINT DEBIT",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            width=190,
+            justify="center"
         )
 
-        self.create_text(
-            600.0,
-            50.0,
-            anchor="nw",
-            text="xx \nml/min",
+        self.text_setpoint_debit = self.create_text(
+            690,
+            75,
+            anchor="c",
+            text=self.text_setpoint_debit_value,
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            width=180,
+            justify="center"
         )
