@@ -1,0 +1,3 @@
+rm -f versi_2
+cc -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -I. -o versi_2  sf06_lf_i2c.h sf06_lf_i2c.c sensirion_i2c_hal.h sensirion_i2c.h sensirion_i2c.c \
+    sensirion_i2c_hal.c sensirion_config.h sensirion_common.h sensirion_common.c versi_2.c
