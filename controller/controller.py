@@ -29,7 +29,7 @@ class Controller(Controller_base):
     def exit_app(self,user_state: User_state):
         logger.critical("Processing to exit the app")
         if const.RASPBERRYPI:
-            import RPi.GPIO as GPIO
+            import RPi.GPIO as GPIO  # type: ignore
             GPIO.cleanup()
             self.model.pump.pwm.stop()
             logger.critical("GPIO pin cleaned and PWM stopped")
