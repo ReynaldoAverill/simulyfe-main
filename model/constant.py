@@ -1,5 +1,5 @@
 # OS Constant
-RASPBERRYPI = True
+RASPBERRYPI = False
 
 # Pump Constant
 PIN_PWM = 13

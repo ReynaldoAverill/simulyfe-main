@@ -3,8 +3,11 @@ from .controller_stopwatch import Controller_stopwatch
 from .controller_page_main import Controller_page_main
 from .controller_pump import Controller_pump
 from .controller_base import Controller_base
+
+from model.user_state import User_state
 import model.constant as const
 
+import sys
 import logging
 
 logger = logging.getLogger(__name__)
@@ -15,9 +18,22 @@ class Controller(Controller_base):
         self.userinterface_controller = Controller_userinterface(self.model,self.userinterface)
         self.stopwatch_controller = Controller_stopwatch(self.model,self.userinterface)
         self.pump_controller = Controller_pump(self.model,self.userinterface)
+        self.model.user_state.add_event_listener("exit_app",self.exit_app)
 
     def start_app(self):
         if self.model.user_state.state == "page_main":
             self.userinterface.switch_to("page_main")
             self.controller_page_main = Controller_page_main(self.model,self.userinterface)
         self.userinterface.start_mainloop()
+    
+    def exit_app(self,user_state: User_state):
+        logger.critical("Processing to exit the app")
+        self.userinterface.destroy_interface()
+        logger.critical("App interface destroyed")
+        if const.RASPBERRYPI:
+            import RPi.GPIO as GPIO
+            GPIO.cleanup()
+            self.model.pump.pwm.stop()
+            logger.critical("GPIO pin cleaned and PWM stopped")
+        raise SystemExit
+            

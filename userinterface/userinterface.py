@@ -50,5 +50,5 @@ class Userinterface:
     def start_mainloop(self):
         self.window.mainloop()
     
-    def exit_app(self):
+    def destroy_interface(self):
         self.window.destroy()
