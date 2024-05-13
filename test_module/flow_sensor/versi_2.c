@@ -59,8 +59,7 @@ int main(void) {
     sensirion_hal_sleep_us(100000);
     uint32_t product_identifier = 0;
     uint8_t serial_number[8] = {0};
-    error =
-        sf06_lf_read_product_identifier(&product_identifier, serial_number, 8);
+    error = sf06_lf_read_product_identifier(&product_identifier, serial_number, 8);
     if (error != NO_ERROR) {
         printf("error executing read_product_identifier(): %i\n", error);
         return error;
@@ -84,9 +83,6 @@ int main(void) {
 
     int flag_tampil_flow = 0;
   
-
-  
-  
     for (repetition = 0; repetition < 5000; repetition++) {
         flag_tampil_flow++;
         sensirion_hal_sleep_us(20000);
@@ -98,7 +94,7 @@ int main(void) {
             continue;
         }
 
-        a_flow_20 += a_flow
+        a_flow_20 += a_flow;
 
         if (flag_tampil_flow >= 20){
             printf("%.2f ", a_flow_20/20);
