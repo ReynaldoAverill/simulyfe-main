@@ -5,7 +5,7 @@
 
 int main(){
     int i = 0;
-    while(i<10){
+    while(i<3){
         printf("i=%d\n",i);
         i++;
         sleep(1);
