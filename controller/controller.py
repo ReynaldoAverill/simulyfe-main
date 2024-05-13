@@ -28,12 +28,19 @@ class Controller(Controller_base):
     
     def exit_app(self,user_state: User_state):
         logger.critical("Processing to exit the app")
-        self.userinterface.destroy_interface()
-        logger.critical("App interface destroyed")
         if const.RASPBERRYPI:
             import RPi.GPIO as GPIO
             GPIO.cleanup()
             self.model.pump.pwm.stop()
             logger.critical("GPIO pin cleaned and PWM stopped")
-        raise SystemExit
+        # Mitigate interface destroyed multiple times
+        try:
+            self.userinterface.destroy_interface()
+        except:
+            logger.error("Window can't be destroyed")
+        else:
+            logger.critical("App interface destroyed")
+        finally: 
+            logger.critical("App closed")
+            exit()
             
