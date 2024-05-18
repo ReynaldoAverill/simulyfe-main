@@ -2,11 +2,12 @@ import logging
 import os
 from tkinter import Tk
 from .page_main import Page_main
+import model.constant as const
 
 logger = logging.getLogger(__name__)
 
 class Window(Tk):
-    def __init__(self,title,size,fullscreen: bool):
+    def __init__(self,title,size):
         """_summary_
 
         Args:
@@ -19,7 +20,7 @@ class Window(Tk):
         self.geometry(f'{size[0]}x{size[1]}')
         self.configure(bg = "#000000")
         # Set window into full screen
-        self.wm_overrideredirect(fullscreen)
+        self.wm_overrideredirect(const.FULLSCREEN)
         self.resizable(False, False)
 
 

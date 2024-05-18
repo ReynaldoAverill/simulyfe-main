@@ -19,8 +19,8 @@ from .page_training_summary import Page_training_summary
 logger = logging.getLogger(__name__)
 
 class Userinterface:
-    def __init__(self,title,dimension,fullscreen: bool = False):
-        self.window = Window(title,dimension,fullscreen)
+    def __init__(self,title,dimension):
+        self.window = Window(title,dimension)
         self.page_classes = {
             "page_main" : Page_main,
             "page_other_menu" : Page_other_menu,

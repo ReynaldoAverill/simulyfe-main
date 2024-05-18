@@ -1,5 +1,6 @@
 # OS Constant
 RASPBERRYPI = False
+FULLSCREEN = False
 
 # Pump Constant
 PIN_PWM = 13

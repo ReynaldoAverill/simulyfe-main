@@ -19,12 +19,13 @@ class Page_training_summary(Canvas):
         )
 
         self.create_text(
-            0.0,
-            0.0,
-            anchor="nw",
+            400,
+            45,
+            anchor="c",
             text="TRAINING SUMMARY",
             fill="#1C666F",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
         )
 
         self.button_image_1 = PhotoImage(
@@ -55,7 +56,7 @@ class Page_training_summary(Canvas):
             410.0,
             119.0,
             anchor="nw",
-            text="EXPECTED DEBIT",
+            text="SETPOINT DEBIT",
             fill="#000000",
             font=("Inter Bold", 30 * -1)
         )
@@ -78,12 +79,14 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            20.0,
-            119.0,
-            anchor="nw",
+            120.0,
+            145.0,
+            anchor="c",
             text="MEASURED DEBIT",
             fill="#000000",
-            font=("Inter", 30 * -1,"bold")
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
         self.create_text(
