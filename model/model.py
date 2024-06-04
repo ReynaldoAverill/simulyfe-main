@@ -1,6 +1,7 @@
 from .user_state import User_state
 from .stopwatch import Stopwatch
 from .component.pump.pump import Pump
+from .component.flow_sensor.flow_sensor import Flow_sensor
 import model.constant as const
 
 class Model():
@@ -11,3 +12,4 @@ class Model():
     
     def _create_component(self):
         self.pump = Pump()
+        self.flow_sensor = Flow_sensor()

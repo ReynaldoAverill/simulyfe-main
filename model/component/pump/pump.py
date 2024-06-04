@@ -44,7 +44,7 @@ class Pump(ObservableModel):
     def initiate_pump_gpio(self):
         if const.RASPBERRYPI:
             try:
-                import RPi.GPIO as GPIO
+                import RPi.GPIO as GPIO # type: ignore
             except:
                 logger.error("GPIO cannot be defined. Import GPIO will be skipped")
             else:

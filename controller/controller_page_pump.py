@@ -11,6 +11,8 @@ class Controller_page_pump(Controller_base):
         self._bind_with_userinterface()
         # Update input debit view
         self.model.pump.trigger_event("update_setpoint_debit_view")
+        # Update data from flow sensor
+        self.model.flow_sensor.trigger_event("update_measured_debit_view")
 
     def _bind_with_userinterface(self):
         # pass

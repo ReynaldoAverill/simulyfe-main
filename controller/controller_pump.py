@@ -50,7 +50,7 @@ class Controller_pump(Controller_base):
     def turn_off_pump(self, pump: Pump):
         self.change_button_layout(pump)
         if const.RASPBERRYPI:
-            import RPi.GPIO as GPIO
+            import RPi.GPIO as GPIO # type: ignore
             GPIO.output(const.PIN_PUMP_ENABLE_A, GPIO.LOW)
             GPIO.output(const.PIN_PUMP_ENABLE_B, GPIO.LOW)
             pump.pwm.ChangeDutyCycle(0)
@@ -59,7 +59,7 @@ class Controller_pump(Controller_base):
         self.change_button_layout(pump)
         logger.info("Pump is activated with debit {debit} {unit}".format(debit=pump.setpoint_debit,unit=const.DEBIT_UNIT))
         if const.RASPBERRYPI:
-            import RPi.GPIO as GPIO
+            import RPi.GPIO as GPIO  # type: ignore
             if const.DIR_A_TO_B:
                 GPIO.output(const.PIN_PUMP_ENABLE_A,GPIO.HIGH)
                 GPIO.output(const.PIN_PUMP_ENABLE_B,GPIO.LOW)
