@@ -10,3 +10,9 @@ PIN_PUMP_ENABLE_B = 26
 DIR_A_TO_B = True
 MAX_DIGIT_DEBIT = 3
 DEBIT_UNIT = "ml/min"
+
+# Camera Constant
+FRAME_WIDTH     = 640
+FRAME_HEIGHT    = 480
+FORMAT          = 'mp4v'
+
