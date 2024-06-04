@@ -53,21 +53,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            410.0,
-            119.0,
-            anchor="nw",
+            410+200/2,
+            90+110/2,
+            anchor="c",
             text="SETPOINT DEBIT",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
         self.create_text(
-            600.0,
-            119.0,
-            anchor="nw",
+            610+170/2,
+            90+110/2,
+            anchor="c",
             text="xx \nml/min",
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -90,12 +94,14 @@ class Page_training_summary(Canvas):
         )
 
         self.create_text(
-            214.0,
-            112.0,
-            anchor="nw",
+            220+170/2,
+            90+110/2,
+            anchor="c",
             text="xx \nml/min",
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -107,21 +113,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            20.0,
-            249.0,
-            anchor="nw",
+            20.0+200/2,
+            220.0+110/2,
+            anchor="c",
             text="DEBIT\nACCURACY",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
         self.create_text(
-            220.0,
-            249.0,
-            anchor="nw",
+            220.0+170/2,
+            220.0+110/2,
+            anchor="c",
             text="xxx%",
             fill="#FFFFFF",
-            font=("Inter Bold", 60 * -1)
+            font=("Inter", 60 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -133,21 +143,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            410.0,
-            249.0,
-            anchor="nw",
-            text="SUTURINGFORCE AVG",
+            410.0+200/2,
+            220.0+110/2,
+            anchor="c",
+            text="SUTURING FORCE AVG",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
         self.create_text(
-            610.0,
-            249.0,
-            anchor="nw",
+            610.0+170/2,
+            220.0+110/2,
+            anchor="c",
             text="STRONG",
             fill="#FF0000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -159,19 +173,23 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            22.0,
-            350.0,
-            anchor="nw",
+            20.0+370/2,
+            355+50/2,
+            anchor="c",
             text="TIME ELAPSED",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),\
+            justify="center",
+            width=370   
         )
 
         self.create_text(
-            22.0,
-            396.0,
-            anchor="nw",
+            20.0+370/2,
+            405+50/2,
+            anchor="c",
             text="HH:MM:SS",
             fill="#000000",
-            font=("Inter Bold", 60 * -1)
+            font=("Inter", 60 * -1,"bold"),
+            justify="center",
+            width=370
         )
