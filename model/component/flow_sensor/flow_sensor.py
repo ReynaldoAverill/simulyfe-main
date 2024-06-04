@@ -15,5 +15,11 @@ class Flow_sensor(ObservableModel):
     def calculate_accuracy(self):
         if self.state:
             self.trigger_event("calculate_accuracy")
-
     
+    def reset_flow_sensor(self):
+        """Reset flow sensor to its initial condition
+        """
+        if self.state:
+            self.state = False
+        self.measured_debit     = 0
+        self.debit_accuracy     = 0

@@ -40,6 +40,16 @@ class Pump(ObservableModel):
 
     def converter_setpoint_debit_to_pmw(self, set_point_debit):
         self.duty_cycle = set_point_debit # need adjustment later
+                
+    def reset_pump(self):
+        """Reset pump to its initial condition
+        """
+        if self.state:
+            self.state = False
+        self.duty_cycle         = 0
+        self.setpoint_debit     = 0
+        self.total_debit_digit  = 0
+        self.current_digit      = 0
 
     def initiate_pump_gpio(self):
         if const.RASPBERRYPI:

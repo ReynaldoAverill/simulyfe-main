@@ -18,6 +18,12 @@ class Page_training_summary(Canvas):
             relief = "ridge"
         )
 
+        self.text_default_setpoint_debit = "xx\nml/min"
+        self.text_default_measured_debit = "xx\nml/min"
+        self.text_default_debit_accuracy = "xxx %"
+        self.text_suturing_force = "STRONG"
+        self.text_stopwatch_default = "HH:MM:SS"
+
         self.create_text(
             400,
             45,
@@ -63,11 +69,11 @@ class Page_training_summary(Canvas):
             width=200
         )
 
-        self.create_text(
+        self.text_setpoint_debit = self.create_text(
             610+170/2,
             90+110/2,
             anchor="c",
-            text="xx \nml/min",
+            text=self.text_default_setpoint_debit,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             justify="center",
@@ -92,12 +98,12 @@ class Page_training_summary(Canvas):
             justify="center",
             width=200
         )
-
-        self.create_text(
+        
+        self.text_measured_debit = self.create_text(
             220+170/2,
             90+110/2,
             anchor="c",
-            text="xx \nml/min",
+            text=self.text_default_measured_debit,
             fill="#000000",
             font=("Inter", 40 * -1,"bold"),
             justify="center",
@@ -123,11 +129,11 @@ class Page_training_summary(Canvas):
             width=200
         )
 
-        self.create_text(
+        self.text_debit_accuracy = self.create_text(
             220.0+170/2,
             220.0+110/2,
             anchor="c",
-            text="xxx%",
+            text=self.text_default_debit_accuracy,
             fill="#FFFFFF",
             font=("Inter", 60 * -1,"bold"),
             justify="center",
@@ -157,7 +163,7 @@ class Page_training_summary(Canvas):
             610.0+170/2,
             220.0+110/2,
             anchor="c",
-            text="STRONG",
+            text=self.text_suturing_force,
             fill="#FF0000",
             font=("Inter", 30 * -1,"bold"),
             justify="center",
@@ -183,11 +189,11 @@ class Page_training_summary(Canvas):
             width=370   
         )
 
-        self.create_text(
+        self.text_stopwatch = self.create_text(
             20.0+370/2,
             405+50/2,
             anchor="c",
-            text="HH:MM:SS",
+            text=self.text_stopwatch_default,
             fill="#000000",
             font=("Inter", 60 * -1,"bold"),
             justify="center",

@@ -24,7 +24,7 @@ class Page_enter_debit(Canvas):
         self.create_text(
             590.0,75.0,
             anchor="c",
-            text="ENTER EXPECTED DEBIT (ml/min)",
+            text="ENTER SETPOINT DEBIT (ml/min)",
             fill="#1C666F",
             font=("Inter", 40 * -1,"bold"),
             width=400,

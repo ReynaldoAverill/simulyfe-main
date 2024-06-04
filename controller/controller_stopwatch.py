@@ -35,7 +35,10 @@ class Controller_stopwatch(Controller_base):
         seconds = time_passed % 60
         minutes = time_passed // 60
         hours   = minutes // 60
-        stopwatch_string = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}:{int(time_passed%1*100):02d}"
+        if(self.model.user_state.state == "page_training_summary"):
+            stopwatch_string = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}.{int(time_passed%1*100):02d}"
+        else:
+            stopwatch_string = f"{int(hours):02d}:{int(minutes):02d}:{int(seconds):02d}.{int(time_passed%1*100):02d}"
         # Validate button
         try:
             self.stopwatch_page.itemconfigure(self.stopwatch_page.text_stopwatch,text=stopwatch_string)
