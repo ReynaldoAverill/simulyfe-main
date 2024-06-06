@@ -16,8 +16,13 @@ def main():
         os.environ.__setitem__('DISPLAY', ':0.0')
         
     model = Model()
+<<<<<<< HEAD
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
     # userinterface.switch_to("page_training_summary")
+=======
+    userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480),fullscreen=True)
+    # userinterface.switch_to("page_pump")
+>>>>>>> 1df0df1 (before pull)
     # userinterface.start_mainloop()
     controller = Controller(model,userinterface)
     try:
