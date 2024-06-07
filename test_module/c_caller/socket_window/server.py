@@ -7,7 +7,8 @@ from subprocess import Popen, PIPE, STDOUT
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
 PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
-def handle_client(conn, addr):
+def handle_client(conn: socket.socket, addr):
+    # Started when server receive data from client/when client is active
     print(f"Connected by {addr}")
     with conn:
         while True:
@@ -22,14 +23,14 @@ def print_random():
         time.sleep(5)
 
 def start_c():
-    create_exe  = ['gcc','-o','client','client.c','-lws2_32']
-    perintah    = [".\client"]
+    executable  = ['gcc','-o','client','client.c','-lws2_32']
+    command     = [".\client"]
     # perintah = "./coba"
 
-    proc1 = Popen(create_exe)
+    proc1 = Popen(executable)
     proc1.wait()
     print("exe file created")
-    proc = Popen(perintah, stdout = PIPE, stderr = PIPE,text=True,universal_newlines=True)
+    proc = Popen(command, stdout = PIPE, stderr = PIPE,text=True,universal_newlines=True)
     print("exe file opened")
 
 def main():

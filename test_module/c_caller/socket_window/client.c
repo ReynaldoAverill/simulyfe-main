@@ -46,7 +46,7 @@ int main() {
     printf("Connected to server.\n");
 
     // Send data to the server
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
         message = "Hello from C client";
         if (send(sock, message, strlen(message), 0) < 0) {
             printf("Send failed: %d\n", WSAGetLastError());
