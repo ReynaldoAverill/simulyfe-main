@@ -18,9 +18,9 @@ class Page_pump(Canvas):
             relief = "ridge"
         ) 
 
-        self.text_default_debit_accuracy = "000 %"
+        self.text_default_debit_accuracy = "0 %"
         self.text_default_pump_state = "OFF"
-        self.text_default_measured_debit_value = "xxx\nml/min"
+        self.text_default_measured_debit_value = "000\nml/min"
         self.text_default_setpoint_debit_value = "xxx\nml/min"
 
         self.create_rectangle(

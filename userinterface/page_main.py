@@ -86,7 +86,7 @@ class Page_main(Canvas):
             height=100.0
         )
         logger.debug(str(page_name)+" canvas created")
-        self.place(x = 0, y = 0)
+        # self.place(x = 0, y = 0)
         # parent.mainloop()
 
     def get_start_button(self):

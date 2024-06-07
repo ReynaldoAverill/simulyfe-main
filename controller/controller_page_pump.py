@@ -9,11 +9,9 @@ class Controller_page_pump(Controller_base):
         super().__init__(model,userinterface)
         self.page: Page_pump = self.userinterface.current_page
         self._bind_with_userinterface()
-        # Update input debit view
-        self.model.pump.trigger_event("update_setpoint_debit_view")
+        self._update_view()
 
     def _bind_with_userinterface(self):
-        # pass
         self.page.button_back_to_anastomosis.config(command = lambda: self._moveto_page_anastomosis_confirmation())
         self.page.button_change_debit.config(command = lambda: self._moveto_page_enter_debit())
         self.page.button_change_pump_state.config(command = lambda: self._change_pump_state())
@@ -33,4 +31,13 @@ class Controller_page_pump(Controller_base):
     
     def _change_pump_state(self):
         logger.info("button pump pressed, change pump state")
+        # Update data from flow sensor
         self.model.pump.change_pump_state()
+        self.model.flow_sensor.trigger_event("read_debit")
+
+    def _update_view(self):
+        logger.info("renew all data in the page")
+        # Update setpoint debit view
+        self.model.pump.trigger_event("update_setpoint_debit_view")
+        # Update measured debit view
+        self.model.flow_sensor.trigger_event("update_measured_debit_view")

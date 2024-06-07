@@ -18,13 +18,20 @@ class Page_training_summary(Canvas):
             relief = "ridge"
         )
 
+        self.text_default_setpoint_debit = "xx\nml/min"
+        self.text_default_measured_debit = "xx\nml/min"
+        self.text_default_debit_accuracy = "xxx %"
+        self.text_suturing_force = "STRONG"
+        self.text_stopwatch_default = "HH:MM:SS"
+
         self.create_text(
-            0.0,
-            0.0,
-            anchor="nw",
+            400,
+            45,
+            anchor="c",
             text="TRAINING SUMMARY",
             fill="#1C666F",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
         )
 
         self.button_image_1 = PhotoImage(
@@ -52,21 +59,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            410.0,
-            119.0,
-            anchor="nw",
-            text="EXPECTED DEBIT",
+            410+200/2,
+            90+110/2,
+            anchor="c",
+            text="SETPOINT DEBIT",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
-        self.create_text(
-            600.0,
-            119.0,
-            anchor="nw",
-            text="xx \nml/min",
+        self.text_setpoint_debit = self.create_text(
+            610+170/2,
+            90+110/2,
+            anchor="c",
+            text=self.text_default_setpoint_debit,
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -78,21 +89,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            20.0,
-            119.0,
-            anchor="nw",
+            120.0,
+            145.0,
+            anchor="c",
             text="MEASURED DEBIT",
             fill="#000000",
-            font=("Inter", 30 * -1,"bold")
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
-
-        self.create_text(
-            214.0,
-            112.0,
-            anchor="nw",
-            text="xx \nml/min",
+        
+        self.text_measured_debit = self.create_text(
+            220+170/2,
+            90+110/2,
+            anchor="c",
+            text=self.text_default_measured_debit,
             fill="#000000",
-            font=("Inter Bold", 40 * -1)
+            font=("Inter", 40 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -104,21 +119,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            20.0,
-            249.0,
-            anchor="nw",
+            20.0+200/2,
+            220.0+110/2,
+            anchor="c",
             text="DEBIT\nACCURACY",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
-        self.create_text(
-            220.0,
-            249.0,
-            anchor="nw",
-            text="xxx%",
+        self.text_debit_accuracy = self.create_text(
+            220.0+170/2,
+            220.0+110/2,
+            anchor="c",
+            text=self.text_default_debit_accuracy,
             fill="#FFFFFF",
-            font=("Inter Bold", 60 * -1)
+            font=("Inter", 60 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -130,21 +149,25 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            410.0,
-            249.0,
-            anchor="nw",
-            text="SUTURINGFORCE AVG",
+            410.0+200/2,
+            220.0+110/2,
+            anchor="c",
+            text="SUTURING FORCE AVG",
             fill="#FFFFFF",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=200
         )
 
         self.create_text(
-            610.0,
-            249.0,
-            anchor="nw",
-            text="STRONG",
+            610.0+170/2,
+            220.0+110/2,
+            anchor="c",
+            text=self.text_suturing_force,
             fill="#FF0000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),
+            justify="center",
+            width=170
         )
 
         self.create_rectangle(
@@ -156,19 +179,23 @@ class Page_training_summary(Canvas):
             outline="")
 
         self.create_text(
-            22.0,
-            350.0,
-            anchor="nw",
+            20.0+370/2,
+            355+50/2,
+            anchor="c",
             text="TIME ELAPSED",
             fill="#000000",
-            font=("Inter Bold", 30 * -1)
+            font=("Inter", 30 * -1,"bold"),\
+            justify="center",
+            width=370   
         )
 
-        self.create_text(
-            22.0,
-            396.0,
-            anchor="nw",
-            text="HH:MM:SS",
+        self.text_stopwatch = self.create_text(
+            20.0+370/2,
+            405+50/2,
+            anchor="c",
+            text=self.text_stopwatch_default,
             fill="#000000",
-            font=("Inter Bold", 60 * -1)
+            font=("Inter", 60 * -1,"bold"),
+            justify="center",
+            width=370
         )

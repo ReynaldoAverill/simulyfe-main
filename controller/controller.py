@@ -3,8 +3,12 @@ from .controller_stopwatch import Controller_stopwatch
 from .controller_page_main import Controller_page_main
 from .controller_pump import Controller_pump
 from .controller_base import Controller_base
+from .controller_flow_sensor import Controller_flow_sensor
+
+from model.user_state import User_state
 import model.constant as const
 
+import sys
 import logging
 
 logger = logging.getLogger(__name__)
@@ -14,11 +18,31 @@ class Controller(Controller_base):
         super().__init__(model,userinterface)
         self.userinterface_controller = Controller_userinterface(self.model,self.userinterface)
         self.stopwatch_controller = Controller_stopwatch(self.model,self.userinterface)
-        if const.RASPBERRYPI:
-            self.pump_controller = Controller_pump(self.model,self.userinterface)
+        self.pump_controller = Controller_pump(self.model,self.userinterface)
+        self.flow_sensor_controller = Controller_flow_sensor(self.model,self.userinterface)
+        self.model.user_state.add_event_listener("exit_app",self.exit_app)
 
     def start_app(self):
         if self.model.user_state.state == "page_main":
             self.userinterface.switch_to("page_main")
             self.controller_page_main = Controller_page_main(self.model,self.userinterface)
         self.userinterface.start_mainloop()
+    
+    def exit_app(self,user_state: User_state):
+        logger.critical("Processing to exit the app")
+        if const.RASPBERRYPI:
+            import RPi.GPIO as GPIO  # type: ignore
+            GPIO.cleanup()
+            self.model.pump.pwm.stop()
+            logger.critical("GPIO pin cleaned and PWM stopped")
+        # Mitigate interface destroyed multiple times
+        try:
+            self.userinterface.destroy_interface()
+        except:
+            logger.error("Window can't be destroyed")
+        else:
+            logger.critical("App interface destroyed")
+        finally: 
+            logger.critical("App closed")
+            exit()
+            

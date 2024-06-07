@@ -17,6 +17,8 @@ class Controller_page_confirmation_pump_to_anastomosis(Controller_base):
     def _moveto_page_anastomosis(self):
         logger.info("button go to previous menu pressed, change app state")
         self.model.user_state.move_to_new_page("page_anastomosis")
+        self.model.pump.reset_pump()
+        self.model.flow_sensor.reset_flow_sensor()
         
     def _moveto_page_pump(self):
         logger.info("button go to pump menu pressed, change app state")
