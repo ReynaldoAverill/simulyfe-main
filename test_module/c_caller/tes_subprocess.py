@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, STDOUT
 import time
 
 create_exe  = ['gcc','-o','coba','number_gen.c']
