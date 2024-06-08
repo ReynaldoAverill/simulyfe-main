@@ -12,8 +12,13 @@ MAX_DIGIT_DEBIT = 3
 DEBIT_UNIT = "ml/min"
 
 # Flow sensor constant
-CREATE_COMMAND  = ['gcc','-o','client_windows','client_windows.c','-lws2_32']
-RUN_COMMAND     = [".\client_windows"]
+CREATE_COMMAND  = ['sudo','make']
+RUN_COMMAND     = ['./version7']
+# CREATE_COMMAND  = ['gcc','-o','client_windows','client_windows.c','-lws2_32']
+# RUN_COMMAND     = [".\client_windows"]
+# CREATE_COMMAND  = ['gcc','client_raspberry.c','-o','client_raspberry']
+# RUN_COMMAND     = ["./client_raspberry"]
+
 HOST        = '127.0.0.1' # Standard loopback interface address (localhost)
 PORT        = 65432 # Port to listen on (non-privileged ports are > 1023)
 

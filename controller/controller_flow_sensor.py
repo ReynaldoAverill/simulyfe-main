@@ -92,6 +92,7 @@ class Controller_flow_sensor(Controller_base):
                 logger.debug(f"Received from {flow_sensor.address}: {data.decode()}")
                 if flow_sensor.state == "listening":
                     self.process_debit(flow_sensor)
+        logger.info("No data received from client. Connection will be terminated")
         self.terminate_and_close(flow_sensor)            
 
     def terminate_and_close(self, flow_sensor: Flow_sensor):
