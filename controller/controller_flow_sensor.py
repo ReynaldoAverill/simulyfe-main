@@ -18,6 +18,7 @@ class Controller_flow_sensor(Controller_base):
         super().__init__(model,userinterface)
         self.model.flow_sensor.add_event_listener("update_measured_debit_view",self.update_measured_debit_view)
         self.model.flow_sensor.add_event_listener("read_debit",self.process_debit)
+        self.model.flow_sensor.add_event_listener("generate_executable",self.generate_executable)
         self.model.flow_sensor.add_event_listener("start_subprocess",self.start_subprocess)
         self.model.flow_sensor.add_event_listener("open_connection",self.open_connection)
         self.model.flow_sensor.add_event_listener("retrieve_data",self.retrieve_data)
@@ -62,15 +63,27 @@ class Controller_flow_sensor(Controller_base):
         flow_sensor.measured_debit = int(flow_sensor.raw_debit)
         # Need adjustment later
         self.update_measured_debit_view(flow_sensor)
+
+    def generate_executable(self, flow_sensor: Flow_sensor):
+        cwd = os.getcwd()
+        subprocess_path = Path(__file__).parent.parent / "model" / "component" / "flow_sensor"
+        os.chdir(subprocess_path)
+        if const.RASPBERRYPI:
+            create_subprocess   = Popen(const.CREATE_COMMAND_RASPBERRY)
+        else:
+            create_subprocess   = Popen(const.CREATE_COMMAND_WINDOWS)
+        create_subprocess.wait()
+        logger.info("Subprocess succesfully created")
+        os.chdir(cwd)
     
     def start_subprocess(self, flow_sensor: Flow_sensor):
         cwd = os.getcwd()
         subprocess_path = Path(__file__).parent.parent / "model" / "component" / "flow_sensor"
         os.chdir(subprocess_path)
-        create_subprocess   = Popen(const.CREATE_COMMAND)
-        create_subprocess.wait()
-        logger.info("Subprocess succesfully created")
-        flow_sensor.subprocess  = Popen(const.RUN_COMMAND, stdout=PIPE,stderr=PIPE,text=True,universal_newlines=True)
+        if const.RASPBERRYPI:
+            flow_sensor.subprocess  = Popen(const.RUN_COMMAND_RASPBERRY, stdout=PIPE,stderr=PIPE,text=True,universal_newlines=True)
+        else:
+            flow_sensor.subprocess  = Popen(const.RUN_COMMAND_WINDOWS, stdout=PIPE,stderr=PIPE,text=True,universal_newlines=True)
         logger.info("Subprocess succesfully opened")
         os.chdir(cwd)
 

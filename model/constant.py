@@ -12,10 +12,10 @@ MAX_DIGIT_DEBIT = 3
 DEBIT_UNIT = "ml/min"
 
 # Flow sensor constant
-CREATE_COMMAND  = ['sudo','make']
-RUN_COMMAND     = ['./version7']
-# CREATE_COMMAND  = ['gcc','-o','client_windows','client_windows.c','-lws2_32']
-# RUN_COMMAND     = [".\client_windows"]
+CREATE_COMMAND_RASPBERRY    = ['sudo','make']
+RUN_COMMAND_RASPBERRY       = ['./version7']
+CREATE_COMMAND_WINDOWS      = ['gcc','-o','client_windows','client_windows.c','-lws2_32']
+RUN_COMMAND_WINDOWS         = [".\client_windows"]
 # CREATE_COMMAND  = ['gcc','client_raspberry.c','-o','client_raspberry']
 # RUN_COMMAND     = ["./client_raspberry"]
 

@@ -47,6 +47,10 @@ class Flow_sensor(ObservableModel):
             self.connected = True
         self.state = "idle"
         self.retrieve_data()
+    
+    def generate_executable(self):
+        self.trigger_event("generate_executable")
+        
 
     def retrieve_data(self):
         logger.info("create thread for flow sensor")

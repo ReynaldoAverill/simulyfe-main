@@ -23,6 +23,12 @@ class Controller(Controller_base):
         self.model.user_state.add_event_listener("exit_app",self.exit_app)
 
     def start_app(self):
+        # create executable program of flow_sensor
+        try:
+            self.model.flow_sensor.trigger_event("generate_executable")
+        except:
+            logger.error("Flow sensor executable cannot be generated")
+        # Move to page main
         if self.model.user_state.state == "page_main":
             self.userinterface.switch_to("page_main")
             self.controller_page_main = Controller_page_main(self.model,self.userinterface)
