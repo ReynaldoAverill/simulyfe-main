@@ -48,6 +48,9 @@
 #define SERVER_ADDR "127.0.0.1"
 
 #define sensirion_hal_sleep_us sensirion_i2c_hal_sleep_usec
+#define DELAY_FLOW_SENSOR 400000
+#define N_REPETITION 200
+#define N_AVERAGE 5
 #define MAX_LEN 100
 
 void print_byte_array(uint8_t* array, uint16_t len) {
@@ -143,9 +146,9 @@ int main(void) {
 	float total = 0;	  
     //int counter_total = 0;
   
-    for (repetition = 0; repetition < 100; repetition++) {
+    for (repetition = 0; repetition < N_REPETITION; repetition++) {
         flag_tampil_flow++;
-        sensirion_hal_sleep_us(400000);
+        sensirion_hal_sleep_us(DELAY_FLOW_SENSOR);
         error = sf06_lf_read_measurement_data(500, &a_flow, &a_temperature, &a_signaling_flags);
         if (error != NO_ERROR) {
             printf("error executing read_measurement_data(): %i\n", error);
@@ -156,14 +159,17 @@ int main(void) {
         a_flow_20 += a_flow;
 	    total += a_flow;
 
-        if (flag_tampil_flow > 20){
-           // printf("20 avg = %.2f\n", a_flow_20/21);
+        if (flag_tampil_flow > N_AVERAGE){
+            // printf("20 avg = %.2f\n", a_flow_20/21);
+            sprintf(message,"Measured Flow (ml/min) = %.2f", a_flow_20/(N_AVERAGE+1));
+            send_message(sock,message);
             flag_tampil_flow = 0;
             a_flow_20 = 0.0;
-       }
+        }
         //printf("%.2f\n ", a_flow);
     }
-    printf("Measured Flow is %.2f mL/min\n", total/repetition);
+    // sprintf(message,"Measured Flow is %.2f mL/min", total/repetition);
+    // send_message(sock,message);
     error = sf06_lf_stop_continuous_measurement();
     if (error != NO_ERROR) {
         return error;

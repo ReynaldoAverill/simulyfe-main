@@ -59,8 +59,8 @@ class Controller_flow_sensor(Controller_base):
             logger.error("Current page doesn't have to show the debit. Debit update skipped")
     
     def process_debit(self, flow_sensor: Flow_sensor):
-        flow_sensor.raw_debit = flow_sensor.raw_debit.replace("Debit = ","")
-        flow_sensor.measured_debit = int(flow_sensor.raw_debit)
+        flow_sensor.raw_debit = flow_sensor.raw_debit.split("= ")[1]
+        flow_sensor.measured_debit = int(float(flow_sensor.raw_debit))
         # Need adjustment later
         self.update_measured_debit_view(flow_sensor)
 
