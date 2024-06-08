@@ -1,0 +1,272 @@
+DEBUG:__main__:Program Started
+DEBUG:__main__:no display found. Using :0.0
+DEBUG:userinterface.window:Initiate window for user interface
+rm -f version7
+cc -Os -Wall -fstrict-aliasing -Wstrict-aliasing=1 -Wsign-conversion -fPIC -Idriver -I. -o version7  driver/sf06_lf_i2c.h driver/sf06_lf_i2c.c driver/sensirion_i2c_hal.h driver/sensirion_i2c.h driver/sensirion_i2c.c \
+         driver/sensirion_i2c_hal.c driver/sensirion_config.h driver/sensirion_common.h driver/sensirion_common.c version_7.c 
+version_7.c: In function ‘connect_to_server’:
+version_7.c:81:42: warning: dereferencing type-punned pointer might break strict-aliasing rules [-Wstrict-aliasing]
+   81 |     if (connect(sock, (struct sockaddr *)&server, sizeof(server)) == -1) {
+      |                                          ^~~~~~~
+INFO:controller.controller_flow_sensor:Subprocess succesfully created
+DEBUG:userinterface.userinterface:Switch to page_main
+DEBUG:userinterface.page_main:Create page_main canvas
+DEBUG:userinterface.page_main:page_main canvas created
+INFO:controller.controller_page_main:button start_pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_anastomosis
+DEBUG:userinterface.userinterface:Switch to page_anastomosis
+DEBUG:userinterface.page_anastomosis:Create page_anastomosis canvas
+INFO:controller.controller_page_anastomosis:button go to pump pressed
+INFO:controller.controller_userinterface:Processing to Move to page_confirmation_anastomosis_to_pump
+DEBUG:userinterface.userinterface:Switch to page_confirmation_anastomosis_to_pump
+DEBUG:userinterface.page_confirmation_anastomosis_to_pump:Create page_confirmation_anastomosis_to_pump canvas
+INFO:controller.controller_page_confirmation_anastomosis_to_pump:button go to pump menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_pump
+DEBUG:userinterface.userinterface:Switch to page_pump
+INFO:userinterface.page_pump:Create page_pump canvas
+INFO:controller.controller_page_pump:Activate flow sensor
+INFO:controller.controller_flow_sensor:Subprocess succesfully opened
+INFO:controller.controller_flow_sensor:Server listening on 127.0.0.1:65432
+INFO:model.component.flow_sensor.flow_sensor:create thread for flow sensor
+INFO:controller.controller_page_pump:renew all data in the page
+INFO:controller.controller_flow_sensor:Connected by ('127.0.0.1', 49086)
+INFO:controller.controller_pump:update setpoint debit value on screen into 0
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.00
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into listening
+INFO:controller.controller_pump:Pump is activated with debit 0 ml/min
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.00
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned off
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into idle
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into listening
+INFO:controller.controller_pump:Pump is activated with debit 0 ml/min
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned off
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into idle
+INFO:controller.controller_page_pump:button go to enter debit pressed
+INFO:controller.controller_userinterface:Processing to Move to page_enter_debit
+DEBUG:userinterface.userinterface:Switch to page_enter_debit
+INFO:userinterface.page_enter_debit:Create page_enter_debit canvas
+INFO:controller.controller_pump:update input value on screen
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_page_enter_debit:button number 6 pressed
+INFO:controller.controller_pump:update input value on screen
+INFO:controller.controller_page_enter_debit:button number 0 pressed
+INFO:controller.controller_pump:update input value on screen
+INFO:controller.controller_page_enter_debit:button go to pump menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_pump
+DEBUG:userinterface.userinterface:Switch to page_pump
+INFO:userinterface.page_pump:Create page_pump canvas
+INFO:controller.controller_page_pump:Activate flow sensor
+INFO:model.component.flow_sensor.flow_sensor:create thread for flow sensor
+INFO:controller.controller_page_pump:renew all data in the page
+INFO:controller.controller_pump:update setpoint debit value on screen into 60
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into listening
+INFO:controller.controller_pump:Pump is activated with debit 60 ml/min
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned off
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into idle
+INFO:controller.controller_page_pump:button go to training summary pressed
+INFO:controller.controller_userinterface:Processing to Move to page_confirmation_pump_to_training_summary
+DEBUG:userinterface.userinterface:Switch to page_confirmation_pump_to_training_summary
+DEBUG:userinterface.page_confirmation_pump_to_training_summary:Create page_confirmation_pump_to_training_summary canvas
+INFO:controller.controller_page_confirmation_pump_to_training_summary:button go to traning_summary pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_training_summary
+DEBUG:userinterface.userinterface:Switch to page_training_summary
+DEBUG:userinterface.page_training_summary:Create page_training_summary canvas
+INFO:controller.controller_page_training_summary:renew all data in the page
+INFO:controller.controller_pump:Update setpoint data for summary into 60
+INFO:controller.controller_flow_sensor:update measured debit value & percentage for summary into 000
+ml/min and 0 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 49086): Measured Flow (ml/min) = 0.01
+INFO:controller.controller_page_training_summary:button go to main menu pressed, reset the state of all component
+INFO:controller.controller_userinterface:Processing to Move to page_main
+DEBUG:userinterface.userinterface:Switch to page_main
+DEBUG:userinterface.page_main:Create page_main canvas
+DEBUG:userinterface.page_main:page_main canvas created
+INFO:controller.controller_flow_sensor:connection terminated and subprogram closed
+ERROR:controller.controller_stopwatch:Not in the page with text_stopwatch. Stopwatch stopped
+INFO:controller.controller_flow_sensor:No data received from client. Connection will be terminated
+Exception in thread Thread-1 (<lambda>):
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.11/threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/simulyfe/Desktop/simulyfe-main/model/component/flow_sensor/flow_sensor.py", line 57, in <lambda>
+    thread_flow_sensor = threading.Thread(target= lambda: self.trigger_event("retrieve_data"))
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/simulyfe/Desktop/simulyfe-main/model/base.py", line 18, in trigger_event
+    func(self)
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_flow_sensor.py", line 109, in retrieve_data
+    self.terminate_and_close(flow_sensor)            
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_flow_sensor.py", line 112, in terminate_and_close
+    flow_sensor.socket.close()
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'close'
+INFO:controller.controller_page_main:button start_pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_anastomosis
+DEBUG:userinterface.userinterface:Switch to page_anastomosis
+DEBUG:userinterface.page_anastomosis:Create page_anastomosis canvas
+INFO:controller.controller_page_anastomosis:button go to pump pressed
+INFO:controller.controller_userinterface:Processing to Move to page_confirmation_anastomosis_to_pump
+DEBUG:userinterface.userinterface:Switch to page_confirmation_anastomosis_to_pump
+DEBUG:userinterface.page_confirmation_anastomosis_to_pump:Create page_confirmation_anastomosis_to_pump canvas
+INFO:controller.controller_page_confirmation_anastomosis_to_pump:button go to pump menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_pump
+DEBUG:userinterface.userinterface:Switch to page_pump
+INFO:userinterface.page_pump:Create page_pump canvas
+INFO:controller.controller_page_pump:Activate flow sensor
+INFO:controller.controller_flow_sensor:Subprocess succesfully opened
+Exception in Tkinter callback
+INFO:controller.controller_flow_sensor:Connected by ('127.0.0.1', 46086)
+INFO:controller.controller_flow_sensor:No data received from client. Connection will be terminated
+INFO:controller.controller_flow_sensor:connection terminated and subprogram closed
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/tkinter/__init__.py", line 1948, in __call__
+    return self.func(*args)
+           ^^^^^^^^^^^^^^^^
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_page_confirmation_anastomosis_to_pump.py", line 15, in <lambda>
+    self.page.button_to_pump.config(command = lambda: self._moveto_page_pump())
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_page_confirmation_anastomosis_to_pump.py", line 23, in _moveto_page_pump
+    self.model.user_state.move_to_new_page("page_pump")
+  File "/home/simulyfe/Desktop/simulyfe-main/model/user_state.py", line 22, in move_to_new_page
+    self.trigger_event("move_to_new_page")
+  File "/home/simulyfe/Desktop/simulyfe-main/model/base.py", line 18, in trigger_event
+    func(self)
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_userinterface.py", line 51, in movepage_and_constructcontroller
+    new_controller = self.pagecontroller_classes[user_state.state](self.model,self.userinterface)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_page_pump.py", line 12, in __init__
+    self._activate_flow_sensor()
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_page_pump.py", line 41, in _activate_flow_sensor
+    self.model.flow_sensor.activate()
+  File "/home/simulyfe/Desktop/simulyfe-main/model/component/flow_sensor/flow_sensor.py", line 46, in activate
+    self.trigger_event("open_connection")
+  File "/home/simulyfe/Desktop/simulyfe-main/model/base.py", line 18, in trigger_event
+    func(self)
+  File "/home/simulyfe/Desktop/simulyfe-main/controller/controller_flow_sensor.py", line 92, in open_connection
+    flow_sensor.socket.bind((const.HOST, const.PORT))
+OSError: [Errno 98] Address already in use
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:controller.controller_pump:Pump is activated with debit 0 ml/min
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned off
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:controller.controller_pump:Pump is activated with debit 0 ml/min
+INFO:controller.controller_page_pump:button back to anastomosis pressed
+INFO:controller.controller_userinterface:Processing to Move to page_confirmation_pump_to_anastomosis
+DEBUG:userinterface.userinterface:Switch to page_confirmation_pump_to_anastomosis
+DEBUG:userinterface.page_confirmation_pump_to_anastomosis:Create page_confirmation_pump_to_anastomosis canvas
+INFO:controller.controller_page_confirmation_pump_to_anastomosis:button go to previous menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_anastomosis
+DEBUG:userinterface.userinterface:Switch to page_anastomosis
+DEBUG:userinterface.page_anastomosis:Create page_anastomosis canvas
+INFO:controller.controller_flow_sensor:connection terminated and subprogram closed
+INFO:controller.controller_page_anastomosis:button back to main menu pressed
+INFO:controller.controller_userinterface:Processing to Move to page_confirmation_anastomosis_to_main
+DEBUG:userinterface.userinterface:Switch to page_confirmation_anastomosis_to_main
+DEBUG:userinterface.page_confirmation_anastomosis_to_main:Create page_confirmation_anastomosis_to_main canvas
+INFO:controller.controller_page_confirmation_anastomosis_to_main:button go to main menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_main
+DEBUG:userinterface.userinterface:Switch to page_main
+DEBUG:userinterface.page_main:Create page_main canvas
+DEBUG:userinterface.page_main:page_main canvas created
+ERROR:controller.controller_stopwatch:Not in the page with text_stopwatch. Stopwatch stopped
+INFO:controller.controller_page_main:button exit pressed, change app state
+CRITICAL:controller.controller:Processing to exit the app
+CRITICAL:controller.controller:GPIO pin cleaned and PWM stopped
+CRITICAL:controller.controller:App interface destroyed
+CRITICAL:controller.controller:App closed
+CRITICAL:controller.controller:Processing to exit the app
+/home/simulyfe/Desktop/simulyfe-main/controller/controller.py:41: RuntimeWarning: No channels have been set up yet - nothing to clean up!  Try cleaning up at the end of your program instead!
+  GPIO.cleanup()
+CRITICAL:controller.controller:GPIO pin cleaned and PWM stopped
+ERROR:controller.controller:Window can't be destroyed
+CRITICAL:controller.controller:App closed
