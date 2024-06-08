@@ -1,10 +1,6 @@
 # OS Constant
-<<<<<<< HEAD
-RASPBERRYPI = False
-FULLSCREEN = False
-=======
 RASPBERRYPI = True
->>>>>>> 1df0df1 (before pull)
+FULLSCREEN = True
 
 # Pump Constant
 PIN_PWM = 13
