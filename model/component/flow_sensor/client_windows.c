@@ -14,7 +14,7 @@ int main() {
     WSADATA wsa;
     SOCKET sock;
     struct sockaddr_in server;
-    char *message;
+    char message[50];
 
     // Initialize Winsock
     printf("\nInitializing Winsock...");
