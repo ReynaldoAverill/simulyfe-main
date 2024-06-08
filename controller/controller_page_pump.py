@@ -9,6 +9,7 @@ class Controller_page_pump(Controller_base):
         super().__init__(model,userinterface)
         self.page: Page_pump = self.userinterface.current_page
         self._bind_with_userinterface()
+        self._activate_flow_sensor()
         self._update_view()
 
     def _bind_with_userinterface(self):
@@ -33,7 +34,11 @@ class Controller_page_pump(Controller_base):
         logger.info("button pump pressed, change pump state")
         # Update data from flow sensor
         self.model.pump.change_pump_state()
-        self.model.flow_sensor.trigger_event("read_debit")
+        self.model.flow_sensor.change_listening_state()
+    
+    def _activate_flow_sensor(self):
+        logger.info("Activate flow sensor")
+        self.model.flow_sensor.activate()        
 
     def _update_view(self):
         logger.info("renew all data in the page")
@@ -41,3 +46,4 @@ class Controller_page_pump(Controller_base):
         self.model.pump.trigger_event("update_setpoint_debit_view")
         # Update measured debit view
         self.model.flow_sensor.trigger_event("update_measured_debit_view")
+        # Activate flow sensor

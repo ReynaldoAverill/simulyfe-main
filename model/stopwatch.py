@@ -17,7 +17,9 @@ class Stopwatch(ObservableModel):
             self.running = False
         else:
             self.running = True
-            threading.Thread(target= lambda: self.trigger_event("count_stopwatch")).start()
+            thread_stopwatch    = threading.Thread(target= lambda: self.trigger_event("count_stopwatch"))
+            thread_stopwatch.daemon = True
+            thread_stopwatch.start()
             
     def reset_stopwatch(self):
         if self.running:

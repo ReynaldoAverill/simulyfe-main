@@ -47,7 +47,8 @@ int main() {
 
     // Send data to the server
     for (int i = 0; i < 100; i++) {
-        message = "Debit = 10";
+        sprintf(message,"Debit = %d",i);
+        // message = "Debit = 10";
         if (send(sock, message, strlen(message), 0) < 0) {
             printf("Send failed: %d\n", WSAGetLastError());
             closesocket(sock);

@@ -1,0 +1,117 @@
+INFO:controller.controller_userinterface:Processing to Move to page_pump
+DEBUG:userinterface.userinterface:Switch to page_pump
+INFO:userinterface.page_pump:Create page_pump canvas
+INFO:controller.controller_page_pump:Activate flow sensor
+INFO:controller.controller_flow_sensor:Server listening on 127.0.0.1:65432
+INFO:model.component.flow_sensor.flow_sensor:create thread for flow sensor
+INFO:controller.controller_page_pump:renew all data in the page
+INFO:controller.controller_pump:update setpoint debit value on screen into 0
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+INFO:controller.controller_page_pump:button go to enter debit pressed
+INFO:controller.controller_userinterface:Processing to Move to page_enter_debit
+DEBUG:userinterface.userinterface:Switch to page_enter_debit
+INFO:userinterface.page_enter_debit:Create page_enter_debit canvas
+INFO:controller.controller_pump:update input value on screen
+INFO:controller.controller_page_enter_debit:button number 5 pressed
+INFO:controller.controller_pump:update input value on screen
+INFO:controller.controller_page_enter_debit:button number 0 pressed
+INFO:controller.controller_pump:update input value on screen
+INFO:controller.controller_page_enter_debit:button go to pump menu pressed, change app state
+INFO:controller.controller_userinterface:Processing to Move to page_pump
+DEBUG:userinterface.userinterface:Switch to page_pump
+INFO:userinterface.page_pump:Create page_pump canvas
+INFO:controller.controller_page_pump:Activate flow sensor
+INFO:controller.controller_flow_sensor:Subprocess succesfully created
+INFO:controller.controller_flow_sensor:Subprocess succesfully opened
+INFO:model.component.flow_sensor.flow_sensor:create thread for flow sensor
+INFO:controller.controller_page_pump:renew all data in the page
+INFO:controller.controller_pump:update setpoint debit value on screen into 50
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 000
+ml/min and 0 %
+INFO:controller.controller_flow_sensor:Connected by ('127.0.0.1', 57379)
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned on
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into listening
+INFO:controller.controller_pump:Pump is activated with debit 50 ml/min
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 010
+ml/min and 20 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 010
+ml/min and 20 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 010
+ml/min and 20 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 010
+ml/min and 20 %
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+INFO:controller.controller_flow_sensor:update measured debit value & percentage on screen into 010
+ml/min and 20 %
+INFO:controller.controller_page_pump:button pump pressed, change pump state
+INFO:model.component.pump.pump:Pump turned off
+INFO:model.component.flow_sensor.flow_sensor:Flow sensor state changed into idle
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+CRITICAL:controller.controller:Processing to exit the app
+ERROR:controller.controller:Window can't be destroyed
+CRITICAL:controller.controller:App closed
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
+DEBUG:controller.controller_flow_sensor:Received from ('127.0.0.1', 57379): Debit = 10
