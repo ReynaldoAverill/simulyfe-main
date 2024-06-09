@@ -22,9 +22,25 @@ RUN_COMMAND_WINDOWS         = [".\client_windows"]
 HOST        = '127.0.0.1' # Standard loopback interface address (localhost)
 PORT        = 65432 # Port to listen on (non-privileged ports are > 1023)
 
+# Force Sensor Constant
+MEDIUM_START    = 11
+STRONG_START    = 16 
+
+ACTIVE_LEFT     = True
+D_OUT_LEFT      = 22
+PD_SCK_LEFT     = 10
+REF_UNIT_LEFT   = 7371
+
+ACTIVE_RIGHT    = True
+D_OUT_RIGHT     = 17
+PD_SCK_RIGHT    = 27
+REF_UNIT_RIGHT  = 6563
+
 # Camera Constant
 FRAME_WIDTH     = 640
 FRAME_HEIGHT    = 480
 FPS             = 30.0
 FORMAT          = 'mp4v'
+EXTERNAL        = False
+EXTERNAL_PATH   = '/media/simulyfe/DATAVIDEO'
 

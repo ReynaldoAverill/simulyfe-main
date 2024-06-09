@@ -50,7 +50,6 @@ class Flow_sensor(ObservableModel):
     
     def generate_executable(self):
         self.trigger_event("generate_executable")
-        
 
     def retrieve_data(self):
         logger.info("create thread for flow sensor")

@@ -6,7 +6,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 import tkinter as tk
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 import threading
 
 import logging

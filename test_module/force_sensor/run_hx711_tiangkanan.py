@@ -64,9 +64,8 @@ print(f"[INFO] Finished setting the 'referenceUnit' at {referenceUnit}.")
 
 while True:
     try:
-	    getRawBytesAndPrintAll()
-            
-    except (KeyboardInterrupt, SystemExit):
+        getRawBytesAndPrintAll()
+    except(KeyboardInterrupt, SystemExit):
         GPIO.cleanup()
         print("[INFO] 'KeyboardInterrupt Exception' detected. Cleaning and exiting...")
         sys.exit()
