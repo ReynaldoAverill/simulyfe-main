@@ -18,8 +18,8 @@ class Page_anastomosis_camera(Canvas):
             relief = "ridge"
         )
         self.text_stopwatch_time = "00:00:00:00"
-        self.text_camera_connectionstatus = "DISCONNECTED"
-        self.text_camera_recordingstatus = "NOT RECORDING"
+        self.text_default_camera_connectionstatus = "DISCONNECTED"
+        self.text_default_camera_recordingstatus = "NOT RECORDING"
         self.create_rectangle(
             120.0,
             345.0,
@@ -104,22 +104,22 @@ class Page_anastomosis_camera(Canvas):
             justify="center"
         )
 
-        self.create_text(
+        self.text_camera_connectionstatus = self.create_text(
             700,
             210,
             anchor="c",
-            text=self.text_camera_connectionstatus,
+            text=self.text_default_camera_connectionstatus,
             fill="#FF0000",
             font=("Inter", 15 * -1,"bold"),
             width=160,
             justify="center"
         )
 
-        self.create_text(
+        self.text_camera_recordingstatus = self.create_text(
             700,
             245,
             anchor="c",
-            text=self.text_camera_recordingstatus,
+            text=self.text_default_camera_recordingstatus,
             fill="#FF0000",
             font=("Inter", 15 * -1,"bold"),
             width=160,

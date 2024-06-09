@@ -21,7 +21,7 @@ class Camera(ObservableModel):
         self.recording = False
         self.is_paused = False
         self.previewing = False
-        self.file = None
+        self.file: cv.VideoWriter   = None
         self.frame = None
         self.lock = threading.Lock()
         self.activate()
@@ -42,17 +42,20 @@ class Camera(ObservableModel):
             if not self.previewing:
                 self.previewing = True
             threading.Thread(target=lambda: self.trigger_event("capture_frames"), daemon=True).start()
+            self.trigger_event("change_layout")
         else:
             logger.error("recording not started")
 
     def pause(self):
         self.is_paused = not self.is_paused
         logger.info("Recording paused." if self.is_paused else "Recording resumed.")
+        self.trigger_event("change_layout")
 
     def reset(self):
         if self.recording:
             self.trigger_event("reset_recording")
             self.recording = False
+        self.trigger_event("change_layout")
 
     def stop(self):
         self.recording = False
