@@ -16,41 +16,34 @@ class Camera(ObservableModel):
     def __init__(self):
         super().__init__()
         self.output_dir = Path(__file__).parent / "recording"
-        self.cam = cv.VideoCapture(2)
-        if not self.cam.isOpened():
-            raise Exception("Error: Camera could not be opened.")
+        self.cam: cv.VideoCapture = None
+        self.connected = False
         self.recording = False
         self.is_paused = False
         self.previewing = False
         self.file = None
         self.frame = None
         self.lock = threading.Lock()
-        self.create_new_video_writer()
+        self.activate()
+        # self.create_new_video_writer()
 
-    def create_new_video_writer(self):
-        date = datetime.now().strftime("%d-%m-%Y_%H.%M.%S")
-        filename = self.output_dir / f"video_{date}.mp4"
-        fourcc = cv.VideoWriter_fourcc(*'mp4v')
-        self.file = cv.VideoWriter(str(filename), fourcc, 30.0, (640, 480))
-        logger.info(f"Recording started... {filename}")
-    
+    def activate(self):
+        self.cam = cv.VideoCapture(const.CAM_PORT)
+        self.connected = self.cam.isOpened()
+        if not self.connected:
+            logger.error("Error: Camera could not be opened.")
+        else:
+            logger.info("camera successfully activated")
+
     def start_recording(self):
         if not self.recording:
             self.recording = True
+            self.trigger_event("create_new_video_writer")
             if not self.previewing:
                 self.previewing = True
-            threading.Thread(target=self._capture_frames, daemon=True).start()
-
-    def _capture_frames(self):
-        while self.recording or self.previewing:
-            ret, frame = self.cam.read()
-            if not ret:
-                logger.error("Error: Frame could not be retrieved.")
-                break
-            with self.lock:
-                self.frame = frame
-            if self.recording and not self.is_paused:
-                self.file.write(frame)
+            threading.Thread(target=lambda: self.trigger_event("capture_frames"), daemon=True).start()
+        else:
+            logger.error("recording not started")
 
     def pause(self):
         self.is_paused = not self.is_paused
@@ -58,8 +51,8 @@ class Camera(ObservableModel):
 
     def reset(self):
         if self.recording:
-            self.file.release()
-            self.create_new_video_writer()
+            self.trigger_event("reset_recording")
+            self.recording = False
 
     def stop(self):
         self.recording = False

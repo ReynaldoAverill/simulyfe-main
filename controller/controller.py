@@ -4,6 +4,7 @@ from .controller_page_main import Controller_page_main
 from .controller_pump import Controller_pump
 from .controller_base import Controller_base
 from .controller_flow_sensor import Controller_flow_sensor
+from .controller_camera import Controller_camera
 
 from model.user_state import User_state
 import model.constant as const
@@ -20,6 +21,7 @@ class Controller(Controller_base):
         self.stopwatch_controller = Controller_stopwatch(self.model,self.userinterface)
         self.pump_controller = Controller_pump(self.model,self.userinterface)
         self.flow_sensor_controller = Controller_flow_sensor(self.model,self.userinterface)
+        self.camera_controller = Controller_camera(self.model,self.userinterface)
         self.model.user_state.add_event_listener("exit_app",self.exit_app)
 
     def start_app(self):

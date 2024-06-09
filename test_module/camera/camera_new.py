@@ -18,7 +18,7 @@ class Model:
         self.file = None
         self.frame = None
         self.lock = threading.Lock()
-        self.create_new_video_writer()
+        # self.create_new_video_writer()
 
     def create_new_video_writer(self):
         date = datetime.now().strftime("%d-%m-%Y_%H.%M.%S")
@@ -30,6 +30,7 @@ class Model:
     def start_recording(self):
         if not self.recording:
             self.recording = True
+            self.create_new_video_writer()
             if not self.previewing:
                 self.previewing = True
             threading.Thread(target=self._capture_frames, daemon=True).start()
@@ -52,7 +53,9 @@ class Model:
     def reset(self):
         if self.recording:
             self.file.release()
-            self.create_new_video_writer()
+            self.recording = False
+        print("Reset recording")
+            # self.create_new_video_writer()
 
     def stop(self):
         self.recording = False
@@ -81,13 +84,13 @@ class View:
         self.preview_button = tk.Button(root, text="Preview Camera")
         self.preview_button.pack(side=tk.LEFT)
 
-    def update_preview(self, frame):
-        if frame is not None:
-            frame_rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
-            img = Image.fromarray(frame_rgb)
-            imgtk = ImageTk.PhotoImage(image=img)
-            self.canvas.imgtk = imgtk
-            self.canvas.create_image(0, 0, anchor=tk.NW, image=imgtk)
+    # def update_preview(self, frame):
+    #     if frame is not None:
+    #         frame_rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+    #         img = Image.fromarray(frame_rgb)
+    #         imgtk = ImageTk.PhotoImage(image=img)
+    #         self.canvas.imgtk = imgtk
+    #         self.canvas.create_image(0, 0, anchor=tk.NW, image=imgtk)
 
 class Controller:
     def __init__(self, root, model, view):
@@ -95,7 +98,7 @@ class Controller:
         self.model = model
         self.view = view
 
-        self.model.start_recording()
+        # self.model.start_recording()
         self.update_preview()
 
         self.root.bind('<Key>', self.on_key)
@@ -137,7 +140,12 @@ class Controller:
         if self.model.previewing:
             frame = self.model.frame
             if frame is not None:
-                self.view.update_preview(frame)
+                frame_rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+                img = Image.fromarray(frame_rgb)
+                imgtk = ImageTk.PhotoImage(image=img)
+                self.view.canvas.imgtk = imgtk
+                self.view.canvas.create_image(0, 0, anchor=tk.NW, image=imgtk)
+                # self.view.update_preview(frame)
                 self.root.after(10, self.update_preview)
 
 def start_app(output_dir):

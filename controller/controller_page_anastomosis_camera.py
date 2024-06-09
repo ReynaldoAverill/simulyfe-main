@@ -20,8 +20,9 @@ class Controller_page_anastomosis_camera(Controller_base):
         self.page.button_to_anastomosis_stopwatch.config(command = lambda: self._moveto_page_anastomosis_stopwatch())
         self.page.button_to_anastomosis_suturing_force.config(command = lambda: self._moveto_page_anastomosis_suturing_force())
 
-        # self.page.button_start_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
-        # self.page.button_stop_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
+        self.page.button_start_recording.config(command = lambda: self._start_recording())
+        self.page.button_stop_recording.config(command = lambda: self._pause_recording())
+        self.page.button_reset_recording.config(command= lambda: self._reset_recording())
         # self.page.button_reset_stopwatch.config(command = lambda: self.model.stopwatch.reset_stopwatch())
         
     def _moveto_page_main_confirmation(self):
@@ -39,3 +40,15 @@ class Controller_page_anastomosis_camera(Controller_base):
     def _moveto_page_anastomosis_suturing_force(self):
         logger.info("button suturing_force pressed")
         self.model.user_state.move_to_new_page("page_anastomosis_suturing_force")
+
+    def _start_recording(self):
+        logger.info("button start recording pressed")
+        self.model.camera.start_recording()
+
+    def _pause_recording(self):
+        logger.info("button pause/stop recording pressed")
+        self.model.camera.pause()
+
+    def _reset_recording(self):
+        logger.info("button reset recording pressed")
+        self.model.camera.reset()
