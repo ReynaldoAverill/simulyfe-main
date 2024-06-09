@@ -15,6 +15,7 @@ class Controller_force_sensor(Controller_base):
     def __init__(self, model, userinterface):
         super().__init__(model,userinterface)
         self.model.force_sensor.add_event_listener("activate_force_sensor_left",self.activate_force_sensor_left)
+        self.model.force_sensor.add_event_listener("activate_force_sensor_left",self.activate_force_sensor_right)
         self.model.force_sensor.add_event_listener("retrieve_data_left",self.retrieve_data_left)
         self.model.force_sensor.add_event_listener("retrieve_data_right",self.retrieve_data_right)
     
@@ -33,6 +34,21 @@ class Controller_force_sensor(Controller_base):
             force_sensor.force_sensor_left.setReferenceUnit(const.REF_UNIT_LEFT)
             logger.info(f"Finished setting the 'referenceUnit' at {const.REF_UNIT_LEFT}.")
 
+    def activate_force_sensor_right(self, force_sensor: Force_sensor):
+        try:
+            force_sensor.force_sensor_right = HX711(const.D_OUT_RIGHT,const.PD_SCK_RIGHT)
+        except:
+            logger.error("Fail to create right force sensor")
+        else:
+            force_sensor.force_sensor_right.setReadingFormat("MSB","MSB")
+            logger.info("Automatically setting the offset.")
+            force_sensor.force_sensor_right.autosetOffset()
+            offsetValue = force_sensor.force_sensor_right.getOffset()
+            logger.info(f"Finished automatically setting the offset. The new value is '{offsetValue}'.")
+            logger.info(f"Setting the 'referenceUnit' at {const.REF_UNIT_RIGHT}.")
+            force_sensor.force_sensor_right.setReferenceUnit(const.REF_UNIT_RIGHT)
+            logger.info(f"Finished setting the 'referenceUnit' at {const.REF_UNIT_RIGHT}.")        
+
     def retrieve_data_left(self, force_sensor: Force_sensor):
         while force_sensor.update_left:
             rawBytes = force_sensor.force_sensor_left.getRawBytes()
@@ -45,17 +61,34 @@ class Controller_force_sensor(Controller_base):
             self.update_measurement_category(force_sensor)
 
     def retrieve_data_right(self, force_sensor: Force_sensor):
-        pass
+        while force_sensor.update_right:
+            rawBytes = force_sensor.force_sensor_right.getRawBytes()
+            # longValue = force_sensor.force_sensor_right.rawBytesToLong(rawBytes)
+            force_sensor.longWithOffset_right    = force_sensor.force_sensor_right.rawBytesToLongWithOffset(rawBytes)
+            force_sensor.weightValue_right       = force_sensor.force_sensor_right.rawBytesToWeight(rawBytes)
+            force_sensor.category_right          = self.evaluate_force(force_sensor.weightValue_right)
+            #print(f"[INFO] POLLING_BASED | longValue: {longValue} | longWithOffsetValue: {longWithOffsetValue} | weight (grams): {weightValue}")
+            logger.debug(f"RIGHT | longWithOffsetValue: {force_sensor.longWithOffset_right} | weight (grams): {force_sensor.weightValue_right} | {force_sensor.category_right}")
+            self.update_measurement_category(force_sensor)
 
     def update_measurement_category(self, force_sensor: Force_sensor):
         suturing_force_page: Page_anastomosis_suturing_force = self.userinterface.current_page
-        suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_left,text=force_sensor.category_left)
-        if force_sensor.category_left == "STRONG":
-            suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FF0000")
-        elif force_sensor.category_left == "MEDIUM":
-            suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FFF500")
-        else:
-            suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#00FF00")
+        if const.ACTIVE_LEFT:
+            suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_left,text=force_sensor.category_left)
+            if force_sensor.category_left == "STRONG":
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FF0000")
+            elif force_sensor.category_left == "MEDIUM":
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FFF500")
+            else:
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#00FF00")
+        if const.ACTIVE_RIGHT:
+            suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_right,text=force_sensor.category_right)
+            if force_sensor.category_right == "STRONG":
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#FF0000")
+            elif force_sensor.category_right == "MEDIUM":
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#FFF500")
+            else:
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#00FF00")
         
     def evaluate_force(self, weightValue: float) -> str:
         if weightValue >= const.STRONG_START:

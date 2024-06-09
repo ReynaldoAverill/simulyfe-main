@@ -82,7 +82,7 @@ class Page_anastomosis_suturing_force(Canvas):
             justify="center"
         )        
 
-        self.box_suturing_force_rigth = self.create_rectangle(
+        self.box_suturing_force_right = self.create_rectangle(
             420,
             30,
             420+150,
@@ -90,7 +90,7 @@ class Page_anastomosis_suturing_force(Canvas):
             fill="#FFF500",
             outline="")
         
-        self.text_suturing_force_rigth = self.create_text(
+        self.text_suturing_force_right = self.create_text(
             410+170/2,20+110/2,
             anchor="c",
             text=self.text_suturing_force_measured_right,

@@ -24,21 +24,27 @@ class Force_sensor(ObservableModel):
     def activate_force_sensor(self):
         if const.RASPBERRYPI:
             self.trigger_event("activate_force_sensor_left")
+            self.trigger_event("activate_force_sensor_right")
     
     def retrieve_data(self):
         if const.RASPBERRYPI and const.ACTIVE_LEFT:
             self.update_left    = True
-            thread_force_sensor = threading.Thread(target= lambda: self.trigger_event("retrieve_data_left"))
+            thread_force_sensor_left = threading.Thread(target= lambda: self.trigger_event("retrieve_data_left"))
             # Auto close thread when main program ends
-            thread_force_sensor.daemon = True
-            thread_force_sensor.start()
-        elif const.RASPBERRYPI and const.ACTIVE_RIGHT:
-            self.trigger_event("retrieve_data_right")
+            thread_force_sensor_left.daemon = True
+            thread_force_sensor_left.start()
+        if const.RASPBERRYPI and const.ACTIVE_RIGHT:
+            self.update_right   = True
+            thread_force_sensor_right = threading.Thread(target= lambda: self.trigger_event("retrieve_data_right"))
+            # Auto close thread when main program ends
+            thread_force_sensor_right.daemon = True
+            thread_force_sensor_right.start()
     
     def stop_retrieve_data(self):
         if self.update_left:
             self.update_left = False
-        
+        if self.update_right:
+            self.update_right = False
 
     
 
