@@ -135,7 +135,7 @@ class Page_training_summary(Canvas):
             anchor="c",
             text=self.text_default_debit_accuracy,
             fill="#FFFFFF",
-            font=("Inter", 60 * -1,"bold"),
+            font=("Inter", 50 * -1,"bold"),
             justify="center",
             width=170
         )
@@ -195,7 +195,7 @@ class Page_training_summary(Canvas):
             anchor="c",
             text=self.text_stopwatch_default,
             fill="#000000",
-            font=("Inter", 60 * -1,"bold"),
+            font=("Inter", 50 * -1,"bold"),
             justify="center",
             width=370
         )

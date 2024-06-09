@@ -21,7 +21,7 @@ class Page_pump(Canvas):
         self.text_default_debit_accuracy = "0 %"
         self.text_default_pump_state = "OFF"
         self.text_default_measured_debit_value = "000\nml/min"
-        self.text_default_setpoint_debit_value = "xxx\nml/min"
+        self.text_default_setpoint_debit_value = "000\nml/min"
 
         self.create_rectangle(
             390.0,
@@ -239,6 +239,8 @@ class Page_pump(Canvas):
     def pump_turned_on_view(self):
         self.button_change_pump_state.config(image=self.button_image_5)
         self.button_change_debit.place_forget()
+        self.button_finalize.place_forget()
+        self.button_back_to_anastomosis.place_forget()
     
     def pump_turned_off_view(self):
         self.button_change_pump_state.config(image=self.button_image_3)
@@ -247,4 +249,16 @@ class Page_pump(Canvas):
             y=285.0,
             width=160.0,
             height=160.0
+        )
+        self.button_finalize.place(
+            x=590.0,
+            y=315.0,
+            width=190.0,
+            height=100.0
+        )
+        self.button_back_to_anastomosis.place(
+            x=20.0,
+            y=315.0,
+            width=190.0,
+            height=100.0
         )

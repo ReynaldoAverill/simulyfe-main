@@ -6,7 +6,7 @@ import logging
 import os
 
 # Set level for config
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 def main():
@@ -17,7 +17,7 @@ def main():
         
     model = Model()
     userinterface = Userinterface('Simulyfe Anastomosis Training Kit',(800,480))
-    # userinterface.switch_to("page_training_summary")
+    # userinterface.switch_to("page_pump")
     # userinterface.start_mainloop()
     controller = Controller(model,userinterface)
     try:
