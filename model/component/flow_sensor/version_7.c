@@ -50,7 +50,7 @@
 #define sensirion_hal_sleep_us sensirion_i2c_hal_sleep_usec
 #define DELAY_FLOW_SENSOR 400000
 #define N_REPETITION 200
-#define N_AVERAGE 5
+#define N_AVERAGE 20
 #define MAX_LEN 100
 
 void print_byte_array(uint8_t* array, uint16_t len) {
