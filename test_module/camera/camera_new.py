@@ -69,6 +69,18 @@ class View:
         self.canvas = tk.Canvas(root, width=640, height=480)
         self.canvas.pack()
 
+        self.start_button = tk.Button(root, text="Start")
+        self.start_button.pack(side=tk.LEFT)
+
+        self.pause_button = tk.Button(root, text="Pause")
+        self.pause_button.pack(side=tk.LEFT)
+
+        self.reset_button = tk.Button(root, text="Reset")
+        self.reset_button.pack(side=tk.LEFT)
+
+        self.preview_button = tk.Button(root, text="Preview Camera")
+        self.preview_button.pack(side=tk.LEFT)
+
     def update_preview(self, frame):
         if frame is not None:
             frame_rgb = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
@@ -88,17 +100,10 @@ class Controller:
 
         self.root.bind('<Key>', self.on_key)
 
-        self.start_button = tk.Button(root, text="Start", command=self.on_start)
-        self.start_button.pack(side=tk.LEFT)
-
-        self.pause_button = tk.Button(root, text="Pause", command=self.on_pause)
-        self.pause_button.pack(side=tk.LEFT)
-
-        self.reset_button = tk.Button(root, text="Reset", command=self.on_reset)
-        self.reset_button.pack(side=tk.LEFT)
-
-        self.preview_button = tk.Button(root, text="Preview Camera", command=self.on_preview)
-        self.preview_button.pack(side=tk.LEFT)
+        self.view.start_button.config(command=self.on_start)
+        self.view.pause_button.config(command=self.on_pause)
+        self.view.reset_button.config(command=self.on_reset)
+        self.view.preview_button.config(command=self.on_preview)
 
     def on_start(self):
         self.model.start_recording()
