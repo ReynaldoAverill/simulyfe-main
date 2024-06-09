@@ -11,6 +11,10 @@ class Controller_page_anastomosis_suturing_force(Controller_base):
         self._bind_with_userinterface()
         # Update stopwatch view
         self.model.stopwatch.trigger_event("update_stopwatch_view")
+        # Update suturing force view
+        self.model.force_sensor.trigger_event("update_measurement_category")
+        # Retrieve data from force sensor
+        self.model.force_sensor.retrieve_data()
 
     def _bind_with_userinterface(self):
         # pass
@@ -26,16 +30,20 @@ class Controller_page_anastomosis_suturing_force(Controller_base):
         
     def _moveto_page_main_confirmation(self):
         logger.info("button back to main menu pressed")
+        self.model.force_sensor.stop_retrieve_data()
         self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_main")
 
     def _moveto_page_pump_confirmation(self):
         logger.info("button go to pump pressed")
+        self.model.force_sensor.stop_retrieve_data()
         self.model.user_state.move_to_new_page("page_confirmation_anastomosis_to_pump")
 
     def _moveto_page_anastomosis_stopwatch(self):
         logger.info("button stopwatch pressed")
+        self.model.force_sensor.stop_retrieve_data()
         self.model.user_state.move_to_new_page("page_anastomosis")
     
     def _moveto_page_anastomosis_camera(self):
         logger.info("button camera pressed")
+        self.model.force_sensor.stop_retrieve_data()
         self.model.user_state.move_to_new_page("page_anastomosis_camera")

@@ -59,6 +59,9 @@ class Page_anastomosis_suturing_force(Canvas):
             width=150,
             justify="center"
         )
+        # self.itemconfigure(self.box_suturing_force_left,fill="#FFF500")
+
+        # self.box_suturing_force_left.itemconfigure(fill="#FFF500")
 
         # Force measurement result (Right)
         self.create_rectangle(

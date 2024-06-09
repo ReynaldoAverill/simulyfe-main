@@ -13,21 +13,31 @@ class Force_sensor(ObservableModel):
         self.longWithOffset_left: int   = 0
         self.weightValue_left: float    = 0
         self.category_left: str         = "WEAK"
+        self.update_left                = False
 
         self.force_sensor_right: HX711  = None
         self.longWithOffset_right: int  = 0
         self.weightValue_right: float   = 0
         self.category_right: str        = "WEAK"
+        self.update_right               = False
 
     def activate_force_sensor(self):
         if const.RASPBERRYPI:
-            self.trigger_event("activate_force_sensor")
+            self.trigger_event("activate_force_sensor_left")
     
     def retrieve_data(self):
         if const.RASPBERRYPI and const.ACTIVE_LEFT:
-            self.trigger_event("retrieve_data_left")
+            self.update_left    = True
+            thread_force_sensor = threading.Thread(target= lambda: self.trigger_event("retrieve_data_left"))
+            # Auto close thread when main program ends
+            thread_force_sensor.daemon = True
+            thread_force_sensor.start()
         elif const.RASPBERRYPI and const.ACTIVE_RIGHT:
             self.trigger_event("retrieve_data_right")
+    
+    def stop_retrieve_data(self):
+        if self.update_left:
+            self.update_left = False
         
 
     
