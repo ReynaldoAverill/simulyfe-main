@@ -111,6 +111,8 @@ class Controller_flow_sensor(Controller_base):
         self.terminate_and_close(flow_sensor)            
 
     def terminate_and_close(self, flow_sensor: Flow_sensor):
-        flow_sensor.socket.close()
-        flow_sensor.subprocess.terminate()
+        if flow_sensor.socket:
+            flow_sensor.socket.close()
+        if flow_sensor.subprocess:
+            flow_sensor.subprocess.kill()
         logger.info("connection terminated and subprogram closed")
