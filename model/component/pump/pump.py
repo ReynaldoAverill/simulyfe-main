@@ -23,7 +23,9 @@ class Pump(ObservableModel):
         else:
             self.state = True
             logger.info("Pump turned on")
-            threading.Thread(target= lambda: self.trigger_event("turn_on_pump")).start()
+            thread_pump = threading.Thread(target= lambda: self.trigger_event("turn_on_pump"))
+            thread_pump.daemon = True
+            thread_pump.start()
         
     def get_pump_setpoint_debit(self,new_number):
         if self.state:
