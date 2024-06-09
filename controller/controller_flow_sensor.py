@@ -89,6 +89,8 @@ class Controller_flow_sensor(Controller_base):
 
     def open_connection(self, flow_sensor: Flow_sensor):
         flow_sensor.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Allow to reuse same address
+        flow_sensor.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         flow_sensor.socket.bind((const.HOST, const.PORT))
         flow_sensor.socket.listen()
         logger.info(f"Server listening on {const.HOST}:{const.PORT}")
