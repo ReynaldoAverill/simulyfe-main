@@ -20,49 +20,124 @@ class Page_anastomosis_suturing_force(Canvas):
         self.text_stopwatch_time = "00:00:00:00"
         self.text_camera_connectionstatus = "DISCONNECTED"
         self.text_camera_recordingstatus = "NOT RECORDING"
-        self.text_suturing_force_measured = "WEAK"
+        self.text_suturing_force_measured_left = "STRONG"
+        self.text_suturing_force_measured_right = "MEDIUM"
 
-        # Measurement bar
+        # Force measurement result (Left)
         self.create_rectangle(
-            40.0,
-            40.0,
-            220.0,
-            110.0,
-            fill="#00FF00",
+            20,
+            20,
+            20+370,
+            20+110,
+            fill="#BFDDD2",
             outline="")
+        
+        self.create_text(
+            20+200/2,20+110/2,
+            anchor="c",
+            text="FORCE\n(LEFT)",
+            fill="#000000",
+            font=("Inter",30*-1,"bold"),
+            width=200,
+            justify="center"
+        )        
 
-        self.create_rectangle(
-            220.0,
-            40.0,
-            400.0,
-            110.0,
-            fill="#FFF400",
-            outline="")
-
-        self.create_rectangle(
-            400.0,
-            40.0,
-            580.0,
-            110.0,
+        self.box_suturing_force_left = self.create_rectangle(
+            230,
+            30,
+            230+150,
+            30+90,
             fill="#FF0000",
             outline="")
         
+        self.text_suturing_force_left = self.create_text(
+            220+170/2,20+110/2,
+            anchor="c",
+            text=self.text_suturing_force_measured_left,
+            fill="#000000",
+            font=("Inter",30*-1,"bold"),
+            width=150,
+            justify="center"
+        )
+
+        # Force measurement result (Right)
         self.create_rectangle(
-            20.0,
-            20.0,
-            60.0,
-            130.0,
-            fill="#1C666F",
+            410,
+            20,
+            410+370,
+            20+110,
+            fill="#BFDDD2",
             outline="")
         
-        self.text_suturing_force = self.create_text(
-            620.0,
-            55.0,
-            anchor="nw",
-            text=self.text_suturing_force_measured,
-            fill="#00FF00",
-            font=("Inter Bold", 30 * -1)
+        self.create_text(
+            580+200/2,20+110/2,
+            anchor="c",
+            text="FORCE\n(RIGHT)",
+            fill="#000000",
+            font=("Inter",30*-1,"bold"),
+            width=200,
+            justify="center"
+        )        
+
+        self.box_suturing_force_rigth = self.create_rectangle(
+            420,
+            30,
+            420+150,
+            30+90,
+            fill="#FFF500",
+            outline="")
+        
+        self.text_suturing_force_rigth = self.create_text(
+            410+170/2,20+110/2,
+            anchor="c",
+            text=self.text_suturing_force_measured_right,
+            fill="#000000",
+            font=("Inter",30*-1,"bold"),
+            width=150,
+            justify="center"
         )
+
+        # Measurement bar
+        # self.create_rectangle(
+        #     40.0,
+        #     40.0,
+        #     220.0,
+        #     110.0,
+        #     fill="#00FF00",
+        #     outline="")
+
+        # self.create_rectangle(
+        #     220.0,
+        #     40.0,
+        #     400.0,
+        #     110.0,
+        #     fill="#FFF400",
+        #     outline="")
+
+        # self.create_rectangle(
+        #     400.0,
+        #     40.0,
+        #     580.0,
+        #     110.0,
+        #     fill="#FF0000",
+        #     outline="")
+        
+        # self.create_rectangle(
+        #     20.0,
+        #     20.0,
+        #     60.0,
+        #     130.0,
+        #     fill="#1C666F",
+        #     outline="")
+        
+        # self.text_suturing_force = self.create_text(
+        #     620.0,
+        #     55.0,
+        #     anchor="nw",
+        #     text=self.text_suturing_force_measured,
+        #     fill="#00FF00",
+        #     font=("Inter Bold", 30 * -1)
+        # )
 
         # Decorator rectangle
         self.create_rectangle(
