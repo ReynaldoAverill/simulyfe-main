@@ -50,7 +50,8 @@ def receive_nilai_flow():
     data = request.json
 
     if 'nilai_flow' in data:
-        latest_nilai_flow = data['nilai_flow']
+        latest_nilai_flow: str = data['nilai_flow']
+        latest_nilai_flow = int(float(latest_nilai_flow.split("= ")[1]))
         print("Received nilai_flow:", latest_nilai_flow)  # Display the received data
         if latest_nilai_flow == 9999:
             stop_event.set()
