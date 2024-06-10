@@ -33,7 +33,7 @@ class Controller(Controller_base):
         try:
             self.model.force_sensor.activate_force_sensor()
         except:
-            logger.error("Error when activating foce sensor")
+            logger.error("Error when activating force sensor")
         # Move to page main
         if self.model.user_state.state == "page_main":
             self.userinterface.switch_to("page_main")
