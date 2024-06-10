@@ -39,7 +39,7 @@ stop_event = Event()
 
 # Fungsi untuk menulis ke file CSV
 def write_to_csv():
-    with open('data_pompa.csv', mode='w') as file:
+    with open(f'data_pompa.csv', mode='w') as file:
         writer = csv.writer(file)
         writer.writerow(['Flow', 'PWM'])  # Tulis header
         for i in range(24):
