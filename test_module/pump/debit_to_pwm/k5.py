@@ -8,6 +8,7 @@ import csv
 
 HOST = '127.0.0.1'
 PORT = 65432
+PUMP_DURATION = 10
 
 # Set GPIO mode to BCM
 GPIO.setmode(GPIO.BCM)
@@ -81,7 +82,7 @@ def control_pump():
                     tabel_pwm[j-28] = i  # Store nilai_flow in tabel_pwm
                     j += 1
                     tanda += 1
-                time.sleep(2)  # nyalakan selama 2 detik
+                time.sleep(PUMP_DURATION)  # nyalakan selama 2 detik
 
                 # Panggil fungsi untuk menulis ke CSV
                 #write_to_csv()
