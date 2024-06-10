@@ -1,8 +1,11 @@
 from .controller_base import Controller_base
 from model.component.pump.pump import Pump
+import model.constant as const
 from userinterface.page_enter_debit import Page_enter_debit
 from userinterface.page_pump import Page_pump
 from userinterface.page_training_summary import Page_training_summary
+from pathlib import Path
+import csv
 import model.constant as const
 import logging
 
@@ -13,10 +16,14 @@ class Controller_pump(Controller_base):
         super().__init__(model,userinterface)
         self.model.pump.add_event_listener("get_pump_setpoint_debit",self.get_pump_setpoint_debit)
         self.model.pump.add_event_listener("delete_digit_setpoint_debit",self.delete_digit_setpoint_debit)
+        self.model.pump.add_event_listener("read_flow_pwm_data",self.read_flow_pwm_data)
+        self.model.pump.add_event_listener("converter_setpoint_debit_to_pmw",self.converter_setpoint_debit_to_pmw)
+        self.model.pump.add_event_listener("readjust_setpoint_debit",self.readjust_setpoint_debit)
         self.model.pump.add_event_listener("turn_off_pump",self.turn_off_pump)
         self.model.pump.add_event_listener("turn_on_pump",self.turn_on_pump)
         self.model.pump.add_event_listener("change_button_layout",self.change_button_layout)
         self.model.pump.add_event_listener("update_setpoint_debit_view",self.update_setpoint_debit_view)
+        self.read_flow_pwm_data(self.model.pump)
 
     def get_pump_setpoint_debit(self, pump: Pump):
         pump.total_debit_digit += 1
@@ -52,6 +59,37 @@ class Controller_pump(Controller_base):
         else:
             logger.error("Current page doesn't have to show the debit. Debit update skipped")
 
+    def read_flow_pwm_data(self, pump: Pump):
+        # Specify the path to the CSV file
+        csv_file_path = Path(__file__).parent.parent / "model"/ "component" / "pump" / "flow_pwm.csv"
+
+        # Initialize empty lists to store the data
+        flow_data = []
+        pwm_data = []
+
+        # Read the CSV file and store data in the lists
+        with open(csv_file_path, 'r') as csvfile:
+            csvreader = csv.DictReader(csvfile)
+            for row in csvreader:
+                flow_data.append(int(row['FLOW']))
+                pwm_data.append(int(row['PWM']))
+        
+        # Convert the lists into a dictionary
+        flow_pwm_dict = dict(zip(flow_data, pwm_data))
+        pump.flow_pwm_dict = flow_pwm_dict
+        logger.debug("read flow pwm_data from csv success")
+        # logger.debug(pump.flow_pwm_dict)
+    
+    def converter_setpoint_debit_to_pmw(self, pump: Pump):
+        pump.duty_cycle = pump.flow_pwm_dict[pump.setpoint_debit]
+    
+    def readjust_setpoint_debit(self, pump: Pump):
+        if pump.setpoint_debit > const.MAX_DEBIT:
+            pump.setpoint_debit = const.MAX_DEBIT
+        elif pump.setpoint_debit < const.MIN_DEBIT:
+            pump.setpoint_debit = const.MIN_DEBIT
+        self.update_setpoint_debit_view(pump)
+
     def turn_off_pump(self, pump: Pump):
         self.change_button_layout(pump)
         if const.RASPBERRYPI:
@@ -71,7 +109,8 @@ class Controller_pump(Controller_base):
             else:
                 GPIO.output(const.PIN_PUMP_ENABLE_B,GPIO.HIGH)
                 GPIO.output(const.PIN_PUMP_ENABLE_A,GPIO.LOW)
-            pump.converter_setpoint_debit_to_pmw(pump.setpoint_debit)
+            self.converter_setpoint_debit_to_pmw(pump)
+            logger.info(f"Pump duty cycle set into {pump.duty_cycle}")
             pump.pwm.ChangeDutyCycle(pump.duty_cycle)
 
     def change_button_layout(self, pump: Pump):

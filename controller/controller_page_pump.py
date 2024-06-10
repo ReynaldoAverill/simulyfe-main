@@ -37,13 +37,15 @@ class Controller_page_pump(Controller_base):
         self.model.flow_sensor.change_listening_state()
     
     def _activate_flow_sensor(self):
+        # Activate flow sensor
         logger.info("Activate flow sensor")
         self.model.flow_sensor.activate()        
 
     def _update_view(self):
         logger.info("renew all data in the page")
-        # Update setpoint debit view
-        self.model.pump.trigger_event("update_setpoint_debit_view")
+        # Readjust and update setpoint debit view
+        self.model.pump.trigger_event("readjust_setpoint_debit")
+        # self.model.pump.trigger_event("update_setpoint_debit_view")
         # Update measured debit view
         self.model.flow_sensor.trigger_event("update_measured_debit_view")
-        # Activate flow sensor
+        

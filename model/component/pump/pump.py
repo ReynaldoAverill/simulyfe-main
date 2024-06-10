@@ -1,4 +1,5 @@
 import threading
+import csv
 import model.constant as const
 from model.base import ObservableModel
 
@@ -13,6 +14,7 @@ class Pump(ObservableModel):
         self.setpoint_debit :int = 0
         self.total_debit_digit: int = 0
         self.current_digit: int = 0
+        self.flow_pwm_dict = dict()
         self.initiate_pump_gpio()
     
     def change_pump_state(self):
@@ -39,9 +41,6 @@ class Pump(ObservableModel):
             self.trigger_event("turn_off_pump")
             # self.change_pump_state()
         self.trigger_event("delete_digit_setpoint_debit")
-
-    def converter_setpoint_debit_to_pmw(self, set_point_debit):
-        self.duty_cycle = set_point_debit # need adjustment later
                 
     def reset_pump(self):
         """Reset pump to its initial condition
