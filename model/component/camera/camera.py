@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class Camera(ObservableModel):
     def __init__(self):
         super().__init__()
-        self.output_dir = Path(__file__).parent / "recording"
+        self.output_dir = self.get_output_dir()
         self.cam: cv.VideoCapture = None
         self.connected = False
         self.recording = False
@@ -65,3 +65,9 @@ class Camera(ObservableModel):
             self.file.release()
         cv.destroyAllWindows()
         logger.info("Recording stopped and resources released.")
+    
+    def get_output_dir(self):
+        if const.EXTERNAL:
+            return Path(const.EXTERNAL_PATH)
+        else:
+            return Path(__file__).parent / "recording"
