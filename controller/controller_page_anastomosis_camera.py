@@ -11,6 +11,10 @@ class Controller_page_anastomosis_camera(Controller_base):
         self._bind_with_userinterface()
         # Update stopwatch view
         self.model.stopwatch.trigger_event("update_stopwatch_view")
+        # Update camera view
+        self.model.camera.trigger_event("update_connection_status")
+        # Try to check camera status
+        self.model.camera.activate()
 
     def _bind_with_userinterface(self):
         # pass

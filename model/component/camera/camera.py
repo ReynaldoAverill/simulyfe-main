@@ -28,34 +28,47 @@ class Camera(ObservableModel):
         # self.create_new_video_writer()
 
     def activate(self):
-        self.cam = cv.VideoCapture(const.CAM_PORT)
-        self.connected = self.cam.isOpened()
         if not self.connected:
-            logger.error("Error: Camera could not be opened.")
+            self.cam = cv.VideoCapture(const.CAM_PORT)
+            self.connected = self.cam.isOpened()
+            if not self.connected:
+                logger.error("Error: Camera could not be opened.")
+            else:
+                logger.info("camera successfully activated")
         else:
-            logger.info("camera successfully activated")
+            logger.info("camera is already connected")
 
     def start_recording(self):
-        if not self.recording:
-            self.recording = True
-            self.trigger_event("create_new_video_writer")
-            if not self.previewing:
-                self.previewing = True
-            threading.Thread(target=lambda: self.trigger_event("capture_frames"), daemon=True).start()
-            self.trigger_event("change_layout")
-        else:
-            logger.error("recording not started")
+        if self.connected:
+            if not self.recording:
+                self.recording = True
+                self.trigger_event("create_new_video_writer")
+                if not self.previewing:
+                    self.previewing = True
+                threading.Thread(target=lambda: self.trigger_event("capture_frames"), daemon=True).start()
+                self.trigger_event("update_connection_status")
+            else:
+                logger.error("recording is already started")
+        else: 
+            logger.error("recording not started because camera is not connected")
 
     def pause(self):
-        self.is_paused = not self.is_paused
-        logger.info("Recording paused." if self.is_paused else "Recording resumed.")
-        self.trigger_event("change_layout")
+        if self.connected:
+            self.is_paused = not self.is_paused
+            logger.info("Recording paused." if self.is_paused else "Recording resumed.")
+            self.trigger_event("update_connection_status")
+        else:
+            logger.error("recording not paused because camera is not connected")
 
     def reset(self):
-        if self.recording:
-            self.trigger_event("reset_recording")
-            self.recording = False
-        self.trigger_event("change_layout")
+        if self.connected:
+            if self.recording:
+                self.trigger_event("reset_recording")
+                self.recording = False
+                self.is_paused = False
+            self.trigger_event("update_connection_status")
+        else:
+            logger.error("recording not reset because camera is not connected")
 
     def stop(self):
         self.recording = False

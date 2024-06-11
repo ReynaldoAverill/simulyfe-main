@@ -2,7 +2,8 @@ from .controller_base import Controller_base
 from datetime import datetime
 from model.component.camera.camera import Camera
 from userinterface.page_anastomosis_camera import Page_anastomosis_camera
-from PIL import Image, ImageTk
+from userinterface.page_anastomosis import Page_anastomosis
+# from PIL import Image, ImageTk
 import cv2 as cv
 import tkinter as tk
 import model.constant as const
@@ -18,7 +19,7 @@ class Controller_camera(Controller_base):
         # self.model.camera.add_event_listener("on_start",self.on_start
         self.model.camera.add_event_listener("reset_recording",self.reset_recording)
         self.model.camera.add_event_listener("capture_frames",self.capture_frames)
-        self.model.camera.add_event_listener("change_layout",self.change_layout)
+        self.model.camera.add_event_listener("update_connection_status",self.update_connection_status)
     
     def create_new_video_writer(self, camera: Camera):
         date = datetime.now().strftime("%d-%m-%Y_%H.%M.%S")
@@ -51,7 +52,7 @@ class Controller_camera(Controller_base):
             logger.info("Recording reset")
         else:
             logger.error("No camera file exist")
-        self.change_layout
+        self.update_connection_status(camera)
         # self.create_new_video_writer()
 
     def stop_camera(self, camera: Camera):
@@ -61,18 +62,19 @@ class Controller_camera(Controller_base):
         cv.destroyAllWindows()
         logger.info("Recording stopped and resources released.")
 
-    def change_layout(self, camera: Camera):
-        camera_page: Page_anastomosis_camera = self.userinterface.current_page
-        if camera.connected:
-            camera_page.itemconfigure(camera_page.text_camera_connectionstatus,text="CONNECTED",fill="#00FF00")
-        else:
-            camera_page.itemconfigure(camera_page.text_camera_connectionstatus,text="DISCONNECTED",fill="#FF0000")
-        if camera.recording and not camera.is_paused:
-            camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="RECORDING",fill="#00FF00")
-        elif camera.recording and camera.is_paused:
-            camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="PAUSED",fill="#FFF500")
-        else:
-            camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="NOT RECORDING",fill="#FF0000")
+    def update_connection_status(self, camera: Camera):
+        if self.model.user_state.state == "Page_anastomosis_camera" or "Page_anastomosis":
+            camera_page: Page_anastomosis_camera = self.userinterface.current_page
+            if camera.connected:
+                camera_page.itemconfigure(camera_page.text_camera_connectionstatus,text="CONNECTED",fill="#00FF00")
+            else:
+                camera_page.itemconfigure(camera_page.text_camera_connectionstatus,text="DISCONNECTED",fill="#FF0000")
+            if camera.recording and not camera.is_paused:
+                camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="RECORDING",fill="#00FF00")
+            elif camera.recording and camera.is_paused:
+                camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="PAUSED",fill="#FFF500")
+            else:
+                camera_page.itemconfigure(camera_page.text_camera_recordingstatus,text="NOT RECORDING",fill="#FF0000")
 
     def on_preview(self):
         self.model.camera.previewing = not self.model.camera.previewing

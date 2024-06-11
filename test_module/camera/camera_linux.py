@@ -9,7 +9,7 @@ import threading
 class Model:
     def __init__(self, output_dir):
         self.output_dir = output_dir
-        self.cam = cv.VideoCapture(0)  # Accessing default camera device /dev/video0
+        self.cam = cv.VideoCapture(1)  # Accessing default camera device /dev/video0
         if not self.cam.isOpened():
             raise Exception("Error: Camera could not be opened.")
         self.recording = False
