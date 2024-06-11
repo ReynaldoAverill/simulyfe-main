@@ -51,6 +51,7 @@
 #define DELAY_FLOW_SENSOR 400000
 // N Repetition = 150/minute x time (minute)
 #define N_REPETITION 2250
+#define SCALE_FACTOR 500
 #define N_AVERAGE 20
 #define MAX_LEN 100
 
@@ -150,7 +151,7 @@ int main(void) {
     for (repetition = 0; repetition < N_REPETITION; repetition++) {
         flag_tampil_flow++;
         sensirion_hal_sleep_us(DELAY_FLOW_SENSOR);
-        error = sf06_lf_read_measurement_data(500, &a_flow, &a_temperature, &a_signaling_flags);
+        error = sf06_lf_read_measurement_data(SCALE_FACTOR, &a_flow, &a_temperature, &a_signaling_flags);
         if (error != NO_ERROR) {
             printf("error executing read_measurement_data(): %i\n", error);
             continue;

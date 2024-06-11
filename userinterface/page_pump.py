@@ -23,7 +23,8 @@ class Page_pump(Canvas):
         self.text_default_measured_debit_value = "000\nml/min"
         self.text_default_setpoint_debit_value = "000\nml/min"
 
-        self.create_rectangle(
+        # Decorator rectangle
+        self.rectangle_1 = self.create_rectangle(
             390.0,
             345.0,
             410.0,
@@ -32,7 +33,7 @@ class Page_pump(Canvas):
             outline=""
         )
 
-        self.create_rectangle(
+        self.rectangle_2 = self.create_rectangle(
             210.0,
             345.0,
             230.0,
@@ -40,7 +41,7 @@ class Page_pump(Canvas):
             fill="#D9D9D9",
             outline="")
 
-        self.create_rectangle(
+        self.rectangle_3 = self.create_rectangle(
             570.0,
             345.0,
             590.0,
@@ -241,9 +242,15 @@ class Page_pump(Canvas):
         self.button_change_debit.place_forget()
         self.button_finalize.place_forget()
         self.button_back_to_anastomosis.place_forget()
+        self.itemconfigure(self.rectangle_1,state="hidden")
+        self.itemconfigure(self.rectangle_2,state="hidden")
+        self.itemconfigure(self.rectangle_3,state="hidden")
     
     def pump_turned_off_view(self):
         self.button_change_pump_state.config(image=self.button_image_3)
+        self.itemconfigure(self.rectangle_1,state="normal")
+        self.itemconfigure(self.rectangle_2,state="normal")
+        self.itemconfigure(self.rectangle_3,state="normal")
         self.button_change_debit.place(
             x=410.0,
             y=285.0,
