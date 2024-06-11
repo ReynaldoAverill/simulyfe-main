@@ -40,6 +40,7 @@ PD_SCK_RIGHT    = 27
 REF_UNIT_RIGHT  = 6563
 
 # Camera Constant
+CAM_PORT        = 2
 FRAME_WIDTH     = 640
 FRAME_HEIGHT    = 480
 FPS             = 30.0

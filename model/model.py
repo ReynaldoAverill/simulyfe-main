@@ -3,6 +3,7 @@ from .stopwatch import Stopwatch
 from .component.pump.pump import Pump
 from .component.flow_sensor.flow_sensor import Flow_sensor
 from .component.force_sensor.force_sensor import Force_sensor
+from .component.camera.camera import Camera
 import model.constant as const
 
 class Model():
@@ -12,7 +13,8 @@ class Model():
         self._create_component()
     
     def _create_component(self):
-        self.pump = Pump()
-        self.flow_sensor = Flow_sensor()
+        self.pump   = Pump()
+        self.flow_sensor    = Flow_sensor()
+        self.camera = Camera()
         self.force_sensor = Force_sensor()
         
