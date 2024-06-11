@@ -12,6 +12,9 @@ class Model:
         self.cam = cv.VideoCapture(2)
         if not self.cam.isOpened():
             raise Exception("Error: Camera could not be opened.")
+        # Resolusi kamera
+        self.cam.set(cv.CAP_PROP_FRAME_WIDTH, 640)
+        self.cam.set(cv.CAP_PROP_FRAME_HEIGHT, 480)
         self.recording = False
         self.is_paused = False
         self.previewing = False
