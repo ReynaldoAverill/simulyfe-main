@@ -174,35 +174,37 @@ class Page_anastomosis_suturing_force(Canvas):
             385.0,
             fill="#D9D9D9",
             outline="")
+        
+        # Box for stopwatch
 
         self.create_rectangle(
-            20.0,
+            200,
             150.0,
             600.0,
             260.0,
             fill="#5DA295",
             outline="")
 
-        self.create_rectangle(
-            620.0,
-            150.0,
-            780.0,
-            260.0,
-            fill="#5DA295",
-            outline="")
+        # self.create_rectangle(
+        #     620.0,
+        #     150.0,
+        #     780.0,
+        #     260.0,
+        #     fill="#5DA295",
+        #     outline="")
 
-        self.create_text(
-            120,205,
-            anchor="c",
-            text="TIME ELAPSED",
-            fill="#FFFFFF",
-            font=('Inter',-40,'bold'),
-            width=200,
-            justify="center"
-        )
+        # self.create_text(
+        #     120,205,
+        #     anchor="c",
+        #     text="TIME ELAPSED",
+        #     fill="#FFFFFF",
+        #     font=('Inter',-40,'bold'),
+        #     width=200,
+        #     justify="center"
+        # )
 
         self.text_stopwatch = self.create_text(
-            410,205,
+            200+400/2,150+110/2,
             anchor="c",
             text=self.text_stopwatch_time,
             fill="#FFFFFF",
@@ -216,38 +218,38 @@ class Page_anastomosis_suturing_force(Canvas):
 
         # self.config(self.text_stopwatch,text=self.text_stopwatch_time)
 
-        self.create_text(
-            700,
-            170,
-            anchor="c",
-            text="CAMERA",
-            fill="#FFFFFF",
-            font=("Inter", 30 * -1,"bold"),
-            width=160,
-            justify="center"
-        )
+        # self.create_text(
+        #     700,
+        #     170,
+        #     anchor="c",
+        #     text="CAMERA",
+        #     fill="#FFFFFF",
+        #     font=("Inter", 30 * -1,"bold"),
+        #     width=160,
+        #     justify="center"
+        # )
 
-        self.create_text(
-            700,
-            210,
-            anchor="c",
-            text=self.text_camera_connectionstatus,
-            fill="#FF0000",
-            font=("Inter", 15 * -1,"bold"),
-            width=160,
-            justify="center"
-        )
+        # self.create_text(
+        #     700,
+        #     210,
+        #     anchor="c",
+        #     text=self.text_camera_connectionstatus,
+        #     fill="#FF0000",
+        #     font=("Inter", 15 * -1,"bold"),
+        #     width=160,
+        #     justify="center"
+        # )
 
-        self.create_text(
-            700,
-            245,
-            anchor="c",
-            text=self.text_camera_recordingstatus,
-            fill="#FF0000",
-            font=("Inter", 15 * -1,"bold"),
-            width=160,
-            justify="center"
-        )
+        # self.create_text(
+        #     700,
+        #     245,
+        #     anchor="c",
+        #     text=self.text_camera_recordingstatus,
+        #     fill="#FF0000",
+        #     font=("Inter", 15 * -1,"bold"),
+        #     width=160,
+        #     justify="center"
+        # )
 
         self.button_image_1 = PhotoImage(
             file=relative_to_assets(page_name,"button_1.png"))
@@ -327,4 +329,36 @@ class Page_anastomosis_suturing_force(Canvas):
             y=280.0,
             width=160.0,
             height=160.0
+        )
+
+        self.button_image_6 = PhotoImage(
+            file=relative_to_assets(page_name,"button_6.png"))
+        self.button_zero_left = Button(
+            image=self.button_image_6,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_zero_left clicked"),
+            relief="flat"
+        )
+        self.button_zero_left.place(
+            x=20,
+            y=150,
+            width=160.0,
+            height=110.0
+        )
+
+        self.button_image_7 = PhotoImage(
+            file=relative_to_assets(page_name,"button_7.png"))
+        self.button_zero_right = Button(
+            image=self.button_image_7,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_zero_right clicked"),
+            relief="flat"
+        )
+        self.button_zero_right.place(
+            x=620,
+            y=150,
+            width=160.0,
+            height=110.0
         )

@@ -24,6 +24,9 @@ class Controller_page_anastomosis_suturing_force(Controller_base):
         self.page.button_to_anastomosis_stopwatch.config(command = lambda: self._moveto_page_anastomosis_stopwatch())
         self.page.button_to_anastomosis_camera.config(command = lambda: self._moveto_page_anastomosis_camera())
 
+        self.page.button_zero_left.config(command = lambda: self._set_zero_left())
+        self.page.button_zero_right.config(command = lambda: self._set_zero_right())
+
         # self.page.button_start_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
         # self.page.button_stop_stopwatch.config(command = lambda: self.model.stopwatch.change_stopwatch_state())
         # self.page.button_reset_stopwatch.config(command = lambda: self.model.stopwatch.reset_stopwatch())
@@ -47,3 +50,11 @@ class Controller_page_anastomosis_suturing_force(Controller_base):
         logger.info("button camera pressed")
         self.model.force_sensor.stop_retrieve_data()
         self.model.user_state.move_to_new_page("page_anastomosis_camera")
+
+    def _set_zero_left(self):
+        logger.info("button zero left pressed")
+        self.model.force_sensor.set_zero_left()
+
+    def _set_zero_right(self):
+        logger.info("button zero right pressed")
+        self.model.force_sensor.set_zero_right()

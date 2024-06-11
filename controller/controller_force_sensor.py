@@ -55,9 +55,10 @@ class Controller_force_sensor(Controller_base):
             # longValue = force_sensor.force_sensor_left.rawBytesToLong(rawBytes)
             force_sensor.longWithOffset_left    = force_sensor.force_sensor_left.rawBytesToLongWithOffset(rawBytes)
             force_sensor.weightValue_left       = force_sensor.force_sensor_left.rawBytesToWeight(rawBytes)
-            force_sensor.category_left          = self.evaluate_force(force_sensor.weightValue_left)
+            force_sensor.weight_adjusted_left   = force_sensor.weightValue_left - force_sensor.zero_left
+            force_sensor.category_left          = self.evaluate_force(force_sensor.weight_adjusted_left)
             #print(f"[INFO] POLLING_BASED | longValue: {longValue} | longWithOffsetValue: {longWithOffsetValue} | weight (grams): {weightValue}")
-            logger.debug(f"LEFT | longWithOffsetValue: {force_sensor.longWithOffset_left} | weight (grams): {force_sensor.weightValue_left} | {force_sensor.category_left}")
+            logger.debug(f"LEFT | longWithOffsetValue: {force_sensor.longWithOffset_left} | weight adjusted (grams): {force_sensor.weight_adjusted_left:.2f} | {force_sensor.category_left}")
             self.update_measurement_category(force_sensor)
 
     def retrieve_data_right(self, force_sensor: Force_sensor):
@@ -66,35 +67,60 @@ class Controller_force_sensor(Controller_base):
             # longValue = force_sensor.force_sensor_right.rawBytesToLong(rawBytes)
             force_sensor.longWithOffset_right    = force_sensor.force_sensor_right.rawBytesToLongWithOffset(rawBytes)
             force_sensor.weightValue_right       = force_sensor.force_sensor_right.rawBytesToWeight(rawBytes)
-            force_sensor.category_right          = self.evaluate_force(force_sensor.weightValue_right)
+            force_sensor.weight_adjusted_right   = force_sensor.weightValue_right - force_sensor.zero_right
+            force_sensor.category_right          = self.evaluate_force(force_sensor.weight_adjusted_right)
             #print(f"[INFO] POLLING_BASED | longValue: {longValue} | longWithOffsetValue: {longWithOffsetValue} | weight (grams): {weightValue}")
-            logger.debug(f"RIGHT | longWithOffsetValue: {force_sensor.longWithOffset_right} | weight (grams): {force_sensor.weightValue_right} | {force_sensor.category_right}")
+            logger.debug(f"RIGHT | longWithOffsetValue: {force_sensor.longWithOffset_right} | weight adjusted (grams): {force_sensor.weight_adjusted_right:.2f} | {force_sensor.category_right}")
             self.update_measurement_category(force_sensor)
 
     def update_measurement_category(self, force_sensor: Force_sensor):
         suturing_force_page: Page_anastomosis_suturing_force = self.userinterface.current_page
         if const.ACTIVE_LEFT:
-            suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_left,text=force_sensor.category_left)
+            # Give enter for no force category 
+            if force_sensor.category_left != "NO FORCE":
+                suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_left,text=force_sensor.category_left)
+            else:
+                suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_left,text="NO\nFORCE")
+            # Update box color
             if force_sensor.category_left == "STRONG":
+                force_sensor.strong_count_left+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FF0000")
             elif force_sensor.category_left == "MEDIUM":
+                force_sensor.medium_count_left+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#FFF500")
-            else:
+            elif force_sensor.category_left == "SAFE":
+                force_sensor.safe_count_left+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#00FF00")
+            else:
+                force_sensor.noforce_count_left+=1
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_left,fill="#F2F2F2")
         if const.ACTIVE_RIGHT:
+            # Give enter for no force category 
+            if force_sensor.category_right != "NO FORCE":
+                suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_right,text=force_sensor.category_right)
+            else:
+                suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_right,text="NO\nFORCE")
+            # Update box color
             suturing_force_page.itemconfigure(suturing_force_page.text_suturing_force_right,text=force_sensor.category_right)
             if force_sensor.category_right == "STRONG":
+                force_sensor.strong_count_right+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#FF0000")
             elif force_sensor.category_right == "MEDIUM":
+                force_sensor.medium_count_right+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#FFF500")
-            else:
+            elif force_sensor.category_right == "SAFE":
+                force_sensor.safe_count_right+=1
                 suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#00FF00")
+            else:
+                force_sensor.noforce_count_right+=1
+                suturing_force_page.itemconfigure(suturing_force_page.box_suturing_force_right,fill="#F2F2F2")
         
     def evaluate_force(self, weightValue: float) -> str:
         if weightValue >= const.STRONG_START:
             return "STRONG"
         elif weightValue >= const.MEDIUM_START:
             return "MEDIUM"
+        elif weightValue >= const.SAFE_START:
+            return "SAFE"
         else:
-            return "WEAK"
-        
+            return "NO FORCE"
