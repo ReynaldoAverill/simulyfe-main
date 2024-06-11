@@ -263,6 +263,7 @@ class Page_pump(Canvas):
             width=190.0,
             height=100.0
         )
+        
         self.button_back_to_anastomosis.place(
             x=20.0,
             y=315.0,
