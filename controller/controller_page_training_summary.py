@@ -30,3 +30,5 @@ class Controller_page_training_summary(Controller_base):
         self.model.flow_sensor.trigger_event("update_measured_debit_view")
         # Update stopwatch time view
         self.model.stopwatch.trigger_event("update_stopwatch_view")
+        # Update suturing force summary
+        self.model.force_sensor.trigger_event("update_summary_view")

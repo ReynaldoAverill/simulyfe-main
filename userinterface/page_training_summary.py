@@ -21,7 +21,7 @@ class Page_training_summary(Canvas):
         self.text_default_setpoint_debit = "xx\nml/min"
         self.text_default_measured_debit = "xx\nml/min"
         self.text_default_debit_accuracy = "xxx %"
-        self.text_suturing_force = "STRONG"
+        self.text_default_suturing_force = "STRONG"
         self.text_stopwatch_default = "HH:MM:SS"
 
         self.create_text(
@@ -152,18 +152,18 @@ class Page_training_summary(Canvas):
             410.0+200/2,
             220.0+110/2,
             anchor="c",
-            text="SUTURING FORCE AVG",
+            text="SUTURING FORCE",
             fill="#FFFFFF",
             font=("Inter", 30 * -1,"bold"),
             justify="center",
             width=200
         )
 
-        self.create_text(
+        self.text_suturing_force = self.create_text(
             610.0+170/2,
             220.0+110/2,
             anchor="c",
-            text=self.text_suturing_force,
+            text=self.text_default_suturing_force,
             fill="#FF0000",
             font=("Inter", 30 * -1,"bold"),
             justify="center",

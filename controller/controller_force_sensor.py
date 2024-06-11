@@ -2,6 +2,7 @@ from .controller_base import Controller_base
 from model.component.force_sensor.force_sensor import Force_sensor
 from model.component.force_sensor.hx711 import HX711
 from userinterface.page_anastomosis_suturing_force import Page_anastomosis_suturing_force
+from userinterface.page_training_summary import Page_training_summary
 import model.constant as const
 import threading
 import os
@@ -18,6 +19,7 @@ class Controller_force_sensor(Controller_base):
         self.model.force_sensor.add_event_listener("activate_force_sensor_left",self.activate_force_sensor_right)
         self.model.force_sensor.add_event_listener("retrieve_data_left",self.retrieve_data_left)
         self.model.force_sensor.add_event_listener("retrieve_data_right",self.retrieve_data_right)
+        self.model.force_sensor.add_event_listener("update_summary_view",self.update_summary_view)
     
     def activate_force_sensor_left(self, force_sensor: Force_sensor):
         try:
@@ -124,3 +126,19 @@ class Controller_force_sensor(Controller_base):
             return "SAFE"
         else:
             return "NO FORCE"
+    
+    def update_summary_view(self, force_sensor: Force_sensor):
+        if self.model.user_state.state == "page_training_summary":
+            training_summary_page: Page_training_summary = self.userinterface.current_page
+            strong  = self.model.force_sensor.strong_count_left + self.model.force_sensor.strong_count_right
+            medium  = self.model.force_sensor.medium_count_left + self.model.force_sensor.medium_count_right
+            safe    = self.model.force_sensor.safe_count_left + self.model.force_sensor.safe_count_right
+            if strong >= medium and strong >= safe:
+                training_summary_page.itemconfigure(training_summary_page.text_suturing_force,text="STRONG",fill="#FF0000")
+            elif medium >= strong and medium >= safe:
+                training_summary_page.itemconfigure(training_summary_page.text_suturing_force,text="MEDIUM",fill="#FFF500")
+            elif safe >= strong and safe >= medium:
+                training_summary_page.itemconfigure(training_summary_page.text_suturing_force,text="SAFE",fill="#00FF00")
+            logger.info(f"Total Count | Strong = {strong} | Medium = {medium} | Safe = {safe}")
+            logger.info("update force sensor maximum category count")
+
