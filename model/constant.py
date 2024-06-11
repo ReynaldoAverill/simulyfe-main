@@ -10,7 +10,7 @@ PIN_PUMP_ENABLE_B = 26
 DIR_A_TO_B = True
 MAX_DIGIT_DEBIT = 3
 DEBIT_UNIT = "ml/min"
-MIN_DEBIT = 28
+MIN_DEBIT = 10
 MAX_DEBIT = 52
 
 # Flow sensor constant

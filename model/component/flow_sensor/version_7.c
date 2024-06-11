@@ -49,7 +49,8 @@
 
 #define sensirion_hal_sleep_us sensirion_i2c_hal_sleep_usec
 #define DELAY_FLOW_SENSOR 400000
-#define N_REPETITION 200
+// N Repetition = 150/minute x time (minute)
+#define N_REPETITION 2250
 #define N_AVERAGE 20
 #define MAX_LEN 100
 
